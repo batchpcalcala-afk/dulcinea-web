@@ -1,0 +1,288 @@
+---
+import Base from '../layouts/Base.astro';
+import datosEtapas from '../data/etapas.json';
+import datosAliados from '../data/aliados.json';
+import Nav from '../components/Nav.astro';
+import Colofon from '../components/Colofon.astro';
+
+const ROM = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const ESTADO_TXT = {
+  publicado: 'Capítulo ya escrito y publicado',
+  actual: 'Aquí se halla hoy Dulcinea',
+  futuro: 'Aún por escribir',
+};
+const etapas = datosEtapas.etapas;
+const aliados = datosAliados.aliados.filter((a) => !a.fundador);
+const fundadores = datosAliados.aliados.filter((a) => a.fundador);
+const ROMANOS = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'];
+const NOTAS = ['Dulcinea; punto de origen','Molinos','Tradición molinera','Tradición cervantina','Cueva de Medrano','Venta y caminos del Quijote','Molinos y castillo','Alcaná de Toledo, Cide Hamete','Matrimonio de Cervantes','Últimos años y Trinitarias','Nacimiento de Cervantes; destino final'];
+const iActual = Math.max(0, etapas.findIndex((e) => e.estado === 'actual'));
+const actual = etapas[iActual];
+const capClass = (e) => e.estado === 'publicado' ? 'publicado' : e.estado === 'actual' ? 'actual-cap' : 'futuro-cap';
+---
+<Base>
+
+<div id="ano-badge"><span class="sc">Año de</span><b id="ano-num">1616</b></div>
+
+<Nav />
+
+<!-- ============ HÉROE ============ -->
+<header class="heroe" id="historia">
+  <canvas id="motas"></canvas>
+  <div class="heroe-panel">
+    <h1 class="p-item">El Viaje de<br />Dulcinea</h1>
+    <div class="heroe-ornamento p-item" style="animation-delay:.4s">❦</div>
+    <div class="heroe-sub p-item" style="animation-delay:.6s">Una historia viva entre Cervantes,<br />Alcalá de Henares y los Escuderos de Dulcinea</div>
+    <p class="heroe-txt p-item" style="animation-delay:.9s">Dulcinea abandona El Toboso para buscar a Miguel de Cervantes y descubrir la verdad sobre su propia existencia. Cada villa del camino la acerca a Alcalá… y al año 2026.</p>
+    <div class="heroe-botones p-item" style="animation-delay:1.2s">
+      <a class="btn btn-lacre" href="#capitulos">🪶 Conoce la historia</a>
+      <a class="btn btn-perg" href="#aliados">🛡 Ver Escuderos</a>
+      <a class="btn btn-noche" href="/participar">✦ Quiero participar</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TARJETAS DE ACCESO ============ -->
+<div class="accesos">
+  <div class="contenedor">
+    <a class="acceso revela" href="#mapa">
+      <div class="thumb" style="background-image:url('/img/tarjeta-ruta.jpg')"></div>
+      <div class="cuerpo">
+        <h3><span class="ico">📍</span> La Ruta</h3>
+        <p>Sigue los pasos de Dulcinea desde El Toboso hasta Alcalá de Henares.</p>
+        <div class="enlace">Explorar ruta →</div>
+      </div>
+    </a>
+    <a class="acceso revela" href="#capitulos" style="transition-delay:.12s">
+      <div class="thumb" style="background-image:url('/img/tarjeta-capitulos.jpg')"></div>
+      <div class="cuerpo">
+        <h3><span class="ico">📖</span> Capítulos</h3>
+        <p>Descubre los capítulos de esta historia real y universal, escrita a lo largo del tiempo.</p>
+        <div class="enlace">Ver capítulos →</div>
+      </div>
+    </a>
+    <a class="acceso revela" href="#aliados" style="transition-delay:.24s">
+      <div class="thumb" style="background-image:url('/img/tarjeta-escuderos.jpg')"></div>
+      <div class="cuerpo">
+        <h3><span class="ico">🛡</span> Los Escuderos</h3>
+        <p>Conoce a quienes acompañan a Dulcinea en esta misión que trasciende siglos.</p>
+        <div class="enlace">Conocer escuderos →</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ============ BANDA DE CITA ============ -->
+<div class="banda-cita">
+  <svg class="molino-fondo izq" width="120" height="150" viewBox="0 0 120 150" fill="currentColor"><path d="M45,150 L75,150 L68,60 L52,60 Z"/><circle cx="60" cy="52" r="13"/><g stroke="currentColor" stroke-width="5" stroke-linecap="round"><line x1="60" y1="52" x2="105" y2="24"/><line x1="60" y1="52" x2="16" y2="20"/><line x1="60" y1="52" x2="95" y2="92"/><line x1="60" y1="52" x2="22" y2="86"/></g></svg>
+  <span class="comillas">“</span>
+  <blockquote>Y así, la que fue sueño en la pluma de un manco de Lepanto, se hace camino, se hace voz y se hace historia.</blockquote>
+  <div class="firma">— Dulcinea —</div>
+  <svg class="molino-fondo der" width="120" height="150" viewBox="0 0 120 150" fill="currentColor"><path d="M45,150 L75,150 L68,60 L52,60 Z"/><circle cx="60" cy="52" r="13"/><g stroke="currentColor" stroke-width="5" stroke-linecap="round"><line x1="60" y1="52" x2="105" y2="24"/><line x1="60" y1="52" x2="16" y2="20"/><line x1="60" y1="52" x2="95" y2="92"/><line x1="60" y1="52" x2="22" y2="86"/></g></svg>
+</div>
+
+<!-- ============ LA RUTA ============ -->
+<section id="mapa">
+  <div class="contenedor">
+    <div class="ruta-grid">
+      <aside class="panel-ruta revela">
+        <span class="sc" style="color:var(--lacre);letter-spacing:.25em;font-size:.9rem">Primera parte</span>
+        <h2>La Ruta</h2>
+        <div class="lema">El trazado principal del viaje de Dulcinea.</div>
+        <p class="desc">Sigue el recorrido completo que Dulcinea emprende desde El Toboso hasta Alcalá de Henares, atravesando los lugares cervantinos y quijotescos que inspiraron la obra y la vida de Miguel de Cervantes.</p>
+        <div class="itinerario">
+          <span class="tit">— Itinerario del viaje —</span>
+          <ol>
+            {etapas.map((e, i) => (
+              <li class={e.estado === 'actual' ? 'it-actual' : ''} data-etapa={i}>
+                <span class="n">{i + 1}</span>
+                <span class="villa">{e.muni}</span>
+                <span class="nota">{NOTAS[i]}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </aside>
+
+      <div>
+        <div class="mapa-cuadro revela" id="mapa-cuadro">
+          <img src="/img/mapa-viaje.jpg" alt="Mapa ilustrado del viaje de Dulcinea desde El Toboso hasta Alcalá de Henares" />
+          {etapas.map((e, i) => (
+            <button
+              class={`marcador ${e.estado}`}
+              style={`left:${e.pos[0]}%;top:${e.pos[1]}%;transition-delay:${0.25 + i * 0.14}s`}
+              data-etapa={i}
+              aria-label={`${e.muni}, capítulo ${i + 1}`}>
+              {i + 1}
+              <span class="globo">{e.muni} · Año {e.ano}</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="aqui-esta revela"><span class="punto-vivo"></span> Aquí se halla Dulcinea: <b>&nbsp;{actual.muni}&nbsp;· Capítulo {ROM[iActual]}</b></div>
+        <div class="leyenda-mapa revela">
+          <span><i class="dot" style="background:#274925"></i> Capítulo publicado</span>
+          <span><i class="dot actual"></i> Donde hoy se encuentra</span>
+          <span><i class="dot hecho"></i> Camino por andar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="destacados">
+      <div class="destacado revela" data-etapa="0">
+        <img src="/img/destacado-toboso.jpg" alt="El Toboso" />
+        <div><h3>El Toboso</h3><p>Lugar de Dulcinea y punto de partida del viaje.</p><span class="ver">Ver origen →</span></div>
+      </div>
+      <div class="destacado revela" data-etapa="1" style="transition-delay:.12s">
+        <img src="/img/destacado-mancha.jpg" alt="La Mancha cervantina" />
+        <div><h3>La Mancha cervantina</h3><p>Molinos, ventas y caminos que inspiran el viaje.</p><span class="ver">Ver la ruta →</span></div>
+      </div>
+      <div class="destacado revela" data-etapa="10" style="transition-delay:.24s">
+        <img src="/img/destacado-alcala.jpg" alt="Alcalá de Henares" />
+        <div><h3>Alcalá de Henares</h3><p>Cuna de Cervantes; destino final de este viaje.</p><span class="ver">Ver destino →</span></div>
+      </div>
+    </div>
+
+    <div class="detalle-etapa" id="detalle-etapa"></div>
+  </div>
+</section>
+
+<!-- ============ CAPÍTULOS ============ -->
+<section id="capitulos">
+  <div class="contenedor">
+    <div class="cap-cabecera">
+      <div class="revela">
+        <span class="sc" style="color:var(--lacre);letter-spacing:.25em;font-size:.9rem">Segunda parte</span>
+        <h2>Capítulos<br />deste viaje</h2>
+        <div class="lema">Cada villa guarda dos historias: la de Dulcinea y la del propio lugar — su patrimonio, sus leyendas y sus gentes.</div>
+        <p class="mini">Desde El Toboso hasta Alcalá de Henares, este viaje se cuenta capítulo a capítulo, siguiendo los pasos de Dulcinea y la memoria de Cervantes por los caminos de La Mancha.</p>
+      </div>
+      <img class="revela" src="/img/capitulos-cabecera.jpg" alt="Dulcinea leyendo un manuscrito al atardecer" style="transition-delay:.15s" />
+    </div>
+
+    <div class="cap-filas">
+      {etapas.map((e, i) => (
+        <article
+          class={`fila-cap revela ${capClass(e)}`}
+          style={`transition-delay:${Math.min(i * 0.07, 0.5)}s`}
+          data-etapa={i}>
+          <div class="fila-thumb">
+            <img src={`/img/cap-${String(i + 1).padStart(2, '0')}.jpg`} alt={e.muni} loading="lazy" />
+          </div>
+          <div class="fila-num">{ROM[i]}</div>
+          <div class="fila-cuerpo">
+            <h3>Capítulo {ROM[i]} — {e.muni}</h3>
+            <p>{e.txt}</p>
+          </div>
+          <div class="fila-estado">
+            {e.estado === 'publicado' && (<><span class="ico">📖</span>Capítulo ya escrito y publicado</>)}
+            {e.estado === 'actual' && (<><span class="ico">🧭</span>Aquí se halla hoy Dulcinea</>)}
+            {e.estado === 'futuro' && (<><span class="ico">⏳</span>Aún por escribir</>)}
+            {e.jornadas.length > 0 && (
+              <span class="ap-contador">{e.jornadas.filter((a) => a.url).length} de {e.jornadas.length} jornadas</span>
+            )}
+          </div>
+          <div class="fila-pat">{e.pat}</div>
+        </article>
+      ))}
+    </div>
+
+    <div class="cita-capitulos revela">Las historias no solo se leen, se recuerdan. Y los caminos no solo se recorren, se transforman en destino.</div>
+  </div>
+</section>
+
+<!-- ============ ESCUDEROS ============ -->
+<section id="aliados">
+  <div class="contenedor">
+    <div class="cabecera-seccion revela">
+      <span class="sc">Tercera parte</span>
+      <h2>Los escuderos de Dulcinea</h2>
+      <p>No son mecenas ni pregoneros: son parte de la historia. Cada comercio socorre a Dulcinea en su camino… y guarda para siempre la prueba de su paso.</p>
+    </div>
+    {fundadores.map((f) => (
+      <article class="fundador revela">
+        <span class="flor a">⚜</span><span class="flor b">⚜</span><span class="flor c">⚜</span><span class="flor d">⚜</span>
+        <div class="fundador-cab">
+          <img class="mono" src="/img/fundador-monograma.jpg" alt="Monograma de Dulcinea" />
+          <div class="fundador-placa-zona">
+            <div class="fundador-placa">
+              <span class="txt">Escudero Fundador</span>
+              <img src="/img/fundador-sello.jpg" alt="Sello de lacre" />
+            </div>
+            <div class="fundador-desde">Desde {f.desde}</div>
+          </div>
+        </div>
+        <h3 class="fundador-nombre">{f.nombre}</h3>
+        <div class="fundador-tagline">{f.tagline}</div>
+        <div class="fundador-orn">✦</div>
+        <p class="fundador-desc">{f.descripcion}</p>
+        <div class="fundador-pie">
+          <div class="fundador-parada">{ROMANOS[f.parada - 1]}</div>
+          <div class="fundador-lugar">
+            <h4>{f.paradaVilla}</h4>
+            <div class="sub">Parada {ROMANOS[f.parada - 1]} del itinerario de Dulcinea</div>
+            <div class="aqui">Dulcinea estuvo aquí</div>
+          </div>
+          {f.video?.url && (
+            <a class="btn-fundador" href={f.video.url} target="_blank" rel="noopener">
+              <span class="play">▶</span>
+              <span>Ver Short<small>de la visita</small></span>
+            </a>
+          )}
+        </div>
+      </article>
+    ))}
+
+    <div class="aliados-grid">
+      {aliados.map((a, i) => (
+        <article class="aliado revela" style={`transition-delay:${(i % 4) * 0.12}s`}>
+          <div class="sello">Dulcinea<br />estuvo<br />aquí</div>
+          <h3>{a.nombre}</h3>
+          <span class="tipo">{a.tipo}</span>
+          <p>«{a.txt}»</p>
+          <div class="muni">❧ {a.muni} · Ved su capítulo</div>
+        </article>
+      ))}
+    </div>
+
+    <div class="pregon revela" id="contacto">
+      <h3>¿Queréis que Dulcinea llame a vuestra puerta?</h3>
+      <p>Vuestro negocio puede formar parte del viaje: un vídeo protagonizado por Dulcinea, vuestro lugar en la Carta del Camino, materiales para las redes y un pergamino exclusivo que rece «Dulcinea estuvo aquí».</p>
+      <a class="boton-lacre" href="/participar#escudero">Hacerse escudero</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LO POR VENIR ============ -->
+<section id="proximas">
+  <div class="contenedor">
+    <div class="cabecera-seccion revela">
+      <span class="sc">Última parte</span>
+      <h2>De lo que está por venir</h2>
+    </div>
+    <div class="calendario revela">
+      <div class="evento">
+        <span class="fecha">Capítulo que se escribe ahora</span>
+        <h3>{ROM[iActual]} — {actual.muni}</h3>
+        <p>Los molinos. Los gigantes. Y la primera grieta en el tiempo.</p>
+      </div>
+      <div class="evento">
+        <span class="fecha">Después vendrán</span>
+        <h3>{etapas.slice(iActual + 1, iActual + 3).map((e) => e.muni).join(' y ')}</h3>
+        <p>El camino hacia el norte. Cada villa, un pequeño salto hacia adelante.</p>
+      </div>
+      <div class="evento">
+        <span class="fecha">Rumbo a Alcalá</span>
+        <h3>{etapas.slice(iActual + 3, -1).map((e) => e.muni).join(', ')}…</h3>
+        <p>El mundo muda cada vez más aprisa. ¿Llegará Dulcinea al año de 2026?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Colofon />
+
+<script is:inline type="application/json" id="datos-etapas" set:html={JSON.stringify({ etapas, iActual })}></script>
+<script src="../scripts/portal.js"></script>
+
+</Base>

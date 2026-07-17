@@ -1,0 +1,159 @@
+{
+  "_ayuda": "ÚNICO ARCHIVO A EDITAR AL PUBLICAR VÍDEOS. Cada capítulo (villa) contiene 'jornadas' (los vídeos, como I.1, I.2..., al modo de las jornadas del teatro del Siglo de Oro). Cada jornada: {titulo, url}. Si url está vacío (''), aparece como 'aún por escribir'; al pegar el enlace de YouTube pasa a publicado automáticamente. Puedes añadir tantos jornadas como quieras a cada capítulo, incluso después. estado del capítulo: 'publicado' (terminado) | 'actual' (Dulcinea está aquí) | 'futuro'. pos: posición [x%, y%] del marcador sobre img/mapa-viaje.jpg.",
+  "etapas": [
+    {
+      "muni": "El Toboso",
+      "ano": 1616,
+      "estado": "actual",
+      "pos": [
+        86.8,
+        85.0
+      ],
+      "txt": "Que trata de la noche en que las estrellas se movieron, y de la plática imposible que Dulcinea tuvo con Cervantes.",
+      "pat": "Casa-Museo de Dulcinea · Museo Cervantino · punto de origen del viaje",
+      "jornadas": [
+        {
+          "titulo": "¿Dónde está Don Quijote?",
+          "url": "https://youtu.be/WI5WYOb5tao?si=SyAlJ-STlF3xHtjX"
+        },
+        {
+          "titulo": "La plática imposible con Cervantes",
+          "url": ""
+        },
+        {
+          "titulo": "La decisión: partir hacia Alcalá",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "muni": "Campo de Criptana",
+      "ano": 1655,
+      "estado": "futuro",
+      "pos": [
+        65.6,
+        86.8
+      ],
+      "txt": "De los treinta o cuarenta gigantes de aspas blancas, y de cómo Dulcinea comprendió por qué él los acometió.",
+      "pat": "Sierra de los Molinos · posible escenario del célebre pasaje de los molinos (hipótesis, no hecho probado)",
+      "jornadas": [
+        {
+          "titulo": "Los gigantes de aspas blancas",
+          "url": ""
+        },
+        {
+          "titulo": "La primera grieta en el tiempo",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "muni": "Mota del Cuervo",
+      "ano": 1690,
+      "estado": "futuro",
+      "pos": [
+        50.2,
+        72.7
+      ],
+      "txt": "Del balcón de La Mancha y de su tradición molinera, donde el viento cuenta historias antiguas.",
+      "pat": "Molinos de viento · tradición alfarera de las cantareras",
+      "jornadas": []
+    },
+    {
+      "muni": "Alcázar de San Juan",
+      "ano": 1725,
+      "estado": "futuro",
+      "pos": [
+        39.5,
+        79.9
+      ],
+      "txt": "De la villa que también reclama a Cervantes por hijo, y de un torreón que guarda memoria de siglos.",
+      "pat": "Torreón del Gran Prior · tradición cervantina · Museo del Hidalgo",
+      "jornadas": []
+    },
+    {
+      "muni": "Argamasilla de Alba",
+      "ano": 1760,
+      "estado": "futuro",
+      "pos": [
+        23.0,
+        86.1
+      ],
+      "txt": "De la Cueva de Medrano, donde dicen que Cervantes, preso, concibió al ingenioso hidalgo. Él calla cuando Dulcinea pregunta.",
+      "pat": "Cueva de Medrano · el «lugar de la Mancha» según la tradición",
+      "jornadas": []
+    },
+    {
+      "muni": "Puerto Lápice",
+      "ano": 1800,
+      "estado": "futuro",
+      "pos": [
+        3.4,
+        77.4
+      ],
+      "txt": "De la venta donde un hidalgo fue armado caballero, y de los caminos reales que Dulcinea ahora pisa.",
+      "pat": "Venta del Quijote · encrucijada del antiguo camino Madrid–Andalucía",
+      "jornadas": []
+    },
+    {
+      "muni": "Consuegra",
+      "ano": 1840,
+      "estado": "futuro",
+      "pos": [
+        6.3,
+        63.9
+      ],
+      "txt": "De doce molinos en fila sobre un cerro, velando un castillo, y de un cielo que ya no es el de antes.",
+      "pat": "Molinos del cerro Calderico · Castillo de la Muela · fiesta de la Rosa del Azafrán",
+      "jornadas": []
+    },
+    {
+      "muni": "Toledo",
+      "ano": 1885,
+      "estado": "futuro",
+      "pos": [
+        8.5,
+        48.4
+      ],
+      "txt": "Del Alcaná de Toledo, donde Cervantes dijo hallar el manuscrito de Cide Hamete que contaba la historia de ambos.",
+      "pat": "Alcaná de Toledo · escenario de La ilustre fregona · ciudad Patrimonio de la Humanidad",
+      "jornadas": []
+    },
+    {
+      "muni": "Esquivias",
+      "ano": 1930,
+      "estado": "futuro",
+      "pos": [
+        34.3,
+        30.8
+      ],
+      "txt": "De cómo Cervantes pidió un desvío hasta la casa donde se desposó y fue feliz, y de cómo por primera vez él también recordó.",
+      "pat": "Casa-Museo de Cervantes · lugar de su matrimonio con Catalina de Salazar",
+      "jornadas": []
+    },
+    {
+      "muni": "Madrid",
+      "ano": 1975,
+      "estado": "futuro",
+      "pos": [
+        39.9,
+        16.5
+      ],
+      "txt": "De la villa de sus últimos años, donde escribió, publicó y murió, convertida en océano de gentes y de ruido.",
+      "pat": "Barrio de las Letras · Convento de las Trinitarias (sepultura de Cervantes) · Imprenta de Juan de la Cuesta",
+      "jornadas": []
+    },
+    {
+      "muni": "Alcalá de Henares",
+      "ano": 2026,
+      "estado": "futuro",
+      "pos": [
+        61.6,
+        20.4
+      ],
+      "txt": "De la llegada a la cuna de Cervantes, del encuentro, de la verdad… y del comienzo de una nueva historia.",
+      "pat": "Universidad y recinto histórico (UNESCO) · Casa Natal de Cervantes · destino final del viaje",
+      "jornadas": []
+    }
+  ]
+}

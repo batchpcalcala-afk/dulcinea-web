@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Colofon from '../components/Colofon.astro';
+import proyecto from '../data/proyecto.json';
+---
+<Base
+  title="Quiero participar — El Viaje de Dulcinea del Toboso"
+  description="Únete al viaje de Dulcinea: hazte Testigo siguiendo cada jornada, o convierte tu negocio en Escudero y forma parte de la historia.">
+
+<Nav />
+
+<!-- ============ CABECERA ============ -->
+<header class="participar-cab">
+  <div class="contenedor">
+    <span class="sc" style="color:var(--lacre);letter-spacing:.3em;font-size:.9rem">Pregón</span>
+    <h1>Quiero participar</h1>
+    <p class="lema">Tres maneras hay de acompañar a Dulcinea en su viaje:<br />siendo testigo de su historia, socorriéndola como escudero,<br />o aliándose con su causa.</p>
+  </div>
+</header>
+
+<section class="participar-vias">
+  <div class="contenedor vias-grid">
+
+    <!-- ============ TESTIGOS ============ -->
+    <article class="via revela" id="testigo">
+      <span class="via-num">I</span>
+      <h2>Hacerse Testigo</h2>
+      <div class="via-lema">«Si soy una invención… ¿por qué siento?»</div>
+      <p>Cervantes asegura que Dulcinea no existe: que es tinta y papel. Ella ha partido a demostrar lo contrario, pero no puede hacerlo sola — <b>un personaje se vuelve real cuando alguien lo mira</b>. Los <b>Testigos de Dulcinea</b> son quienes, con cada mirada, dan fe de que ella vive. Cuantos más testigos, más real será. Vuestra mirada es su prueba de existencia.</p>
+      <div class="via-botones">
+        <a class="btn btn-lacre" href={proyecto.youtube} target="_blank" rel="noopener">▶ @elviajededulcinea en YouTube</a>
+        <a class="btn btn-perg" href={proyecto.instagram} target="_blank" rel="noopener">@elviajededulcinea en Instagram</a>
+      </div>
+
+      <h3 class="via-sub">El registro de los Testigos</h3>
+      <p>Inscribíos en el registro y recibiréis las nuevas del viaje: cada jornada que se escriba, la historia y los lugares que merecen conocerse, los nuevos escuderos que se unan al camino… y mucho más.</p>
+      <p>Y si nos dejáis vuestros nombres de usuario (cosa voluntaria), podremos <b>valorar vuestra participación como Testigos</b>: cada jornada que veáis, cada «me gusta», cada comentario, cada vez que compartáis la historia — e incluso cada visita a nuestros escuderos — <b>suma puntos</b>. Con ellos ganaréis <b>insignias</b> que abren privilegios en todo el mundo de Dulcinea:</p>
+      <ul class="via-lista">
+        <li>Descuentos y ventajas en los comercios escuderos.</li>
+        <li>Descargas privadas de contenido del viaje.</li>
+        <li>Conocer mejor a Dulcinea… y mucho más.</li>
+      </ul>
+
+      <form id="forma-testigo" class="forma-1616 forma-clara">
+        <div class="campos">
+          <label>Vuestro nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
+          <label>Correo electrónico<input type="email" name="correo" required placeholder="para recibir las nuevas del viaje" /></label>
+          <label>Usuario de YouTube <small>(voluntario)</small><input type="text" name="youtube" placeholder="@vuestrousuario" /></label>
+          <label>Usuario de Instagram <small>(voluntario)</small><input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
+        </div>
+        <button class="btn btn-lacre" type="submit">🪶 Inscribirme como Testigo</button>
+        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra participación como Testigo.</p>
+      </form>
+    </article>
+
+    <!-- ============ ESCUDEROS ============ -->
+    <article class="via via-oscura revela" id="escudero" style="transition-delay:.15s">
+      <span class="via-num">II</span>
+      <h2>Hacerse Escudero</h2>
+      <div class="via-lema">«Todo caballero necesita quien le socorra en el camino.»</div>
+      <p>Los <b>Escuderos de Dulcinea</b> son los comercios y negocios que la ayudan a continuar su viaje. No son anuncios: son parte de la historia. Cada escudero recibe:</p>
+      <ul class="via-lista">
+        <li>Una <b>jornada en vídeo</b> protagonizada por Dulcinea en vuestro establecimiento.</li>
+        <li>Vuestro lugar en el <b>mapa oficial del viaje</b> y presencia permanente en esta web.</li>
+        <li>Material para redes sociales y un <b>pergamino exclusivo</b> «Dulcinea estuvo aquí».</li>
+        <li>La difusión ante los Testigos que siguen el camino.</li>
+      </ul>
+
+      <form id="forma-escudero" class="forma-1616">
+        <div class="campos">
+          <label>Nombre del negocio<input type="text" name="negocio" required placeholder="p. ej. Panadería La Espiga" /></label>
+          <label>Villa<input type="text" name="villa" required placeholder="p. ej. Campo de Criptana" /></label>
+          <label>Oficio<input type="text" name="oficio" placeholder="p. ej. Horno y pan" /></label>
+          <label>Persona de contacto<input type="text" name="persona" required /></label>
+          <label>Correo o teléfono<input type="text" name="contacto" required /></label>
+        </div>
+        <label>Contadnos de vuestro negocio<textarea name="mensaje" rows="4" placeholder="Qué hacéis, desde cuándo, y por qué queréis acompañar a Dulcinea…"></textarea></label>
+        <button class="btn btn-lacre" type="submit">🪶 Enviar la solicitud</button>
+        <p class="forma-nota">La solicitud se abre en vuestro correo, lista para enviar. Si lo preferís, escribidnos directamente a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a></p>
+      </form>
+    </article>
+
+
+    <!-- ============ COLABORAR ============ -->
+    <article class="via via-ancha revela" id="colaborar" style="transition-delay:.25s">
+      <span class="via-num">III</span>
+      <h2>Colaborar con el viaje</h2>
+      <div class="via-lema">«Las grandes empresas no se hacen en soledad.»</div>
+      <p>Si representáis a una <b>asociación cervantina o cultural</b>, una <b>oficina de turismo o ayuntamiento</b> de las villas del camino, un <b>medio de comunicación</b> o un <b>centro educativo</b>, el viaje de Dulcinea está abierto a alianzas: rutas, actos, contenidos conjuntos y difusión del patrimonio.</p>
+
+      <form id="forma-colaborar" class="forma-1616 forma-clara">
+        <div class="campos">
+          <label>Entidad u organización<input type="text" name="entidad" required placeholder="p. ej. Sociedad Cervantina de Alcázar" /></label>
+          <label>A qué va dirigido
+            <select name="tipo" required>
+              <option value="Asociación cervantina o cultural">Asociación cervantina o cultural</option>
+              <option value="Turismo o ayuntamiento">Turismo o ayuntamiento</option>
+              <option value="Medio de comunicación">Medio de comunicación</option>
+              <option value="Centro educativo">Centro educativo</option>
+              <option value="Otra colaboración">Otra colaboración</option>
+            </select>
+          </label>
+          <label>Persona de contacto<input type="text" name="persona" required /></label>
+          <label>Correo o teléfono<input type="text" name="contacto" required /></label>
+        </div>
+        <label>Vuestra propuesta<textarea name="mensaje" rows="4" placeholder="Contadnos qué alianza imagináis con el viaje de Dulcinea…"></textarea></label>
+        <button class="btn btn-lacre" type="submit">🪶 Proponer la alianza</button>
+        <p class="forma-nota">La propuesta se abre en vuestro correo, lista para enviar, con el asunto indicando a qué va dirigida. Si lo preferís, escribidnos a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a></p>
+      </form>
+    </article>
+
+  </div>
+</section>
+
+<Colofon />
+
+<script is:inline type="application/json" id="datos-proyecto" set:html={JSON.stringify(proyecto)}></script>
+<script is:inline>
+  /* revelado por scroll */
+  const obs = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  }), { threshold: 0.1 });
+  document.querySelectorAll('.revela').forEach((el) => obs.observe(el));
+
+  /* la solicitud compone un correo listo para enviar */
+  const proyecto = JSON.parse(document.getElementById('datos-proyecto').textContent);
+  document.getElementById('forma-escudero').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const f = new FormData(ev.target);
+    const asunto = `Quiero ser Escudero de Dulcinea — ${f.get('negocio')}`;
+    const cuerpo = [
+      `Negocio: ${f.get('negocio')}`,
+      `Villa: ${f.get('villa')}`,
+      `Oficio: ${f.get('oficio') || '-'}`,
+      `Persona de contacto: ${f.get('persona')}`,
+      `Correo o teléfono: ${f.get('contacto')}`,
+      '',
+      f.get('mensaje') || '',
+    ].join('\n');
+    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  });
+
+  document.getElementById('forma-testigo').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const f = new FormData(ev.target);
+    const asunto = `Nuevo Testigo de Dulcinea — ${f.get('nombre') || f.get('correo')}`;
+    const cuerpo = [
+      `Nombre: ${f.get('nombre') || '-'}`,
+      `Correo: ${f.get('correo')}`,
+      `Usuario de YouTube: ${f.get('youtube') || '-'}`,
+      `Usuario de Instagram: ${f.get('instagram') || '-'}`,
+    ].join('\n');
+    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  });
+
+  document.getElementById('forma-colaborar').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const f = new FormData(ev.target);
+    const asunto = `Colaboración · ${f.get('tipo')} — ${f.get('entidad')}`;
+    const cuerpo = [
+      `Entidad: ${f.get('entidad')}`,
+      `Dirigido a: ${f.get('tipo')}`,
+      `Persona de contacto: ${f.get('persona')}`,
+      `Correo o teléfono: ${f.get('contacto')}`,
+      '',
+      f.get('mensaje') || '',
+    ].join('\n');
+    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  });
+</script>
+
+</Base>

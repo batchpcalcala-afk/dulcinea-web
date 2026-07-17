@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+  <rect width="400" height="260" fill="#2A1A0E"/>
+  <circle cx="200" cy="130" r="86" fill="#96741F"/>
+  <circle cx="200" cy="130" r="78" fill="#B08A3E"/>
+  <circle cx="200" cy="130" r="66" fill="#8A6423"/>
+  <path d="M200,78 C226,90 244,92 252,92 C252,140 240,168 200,186 C160,168 148,140 148,92 C156,92 174,90 200,78 Z" fill="#6E4C15"/>
+  <text x="200" y="152" text-anchor="middle" font-family="Georgia,serif" font-size="58" fill="#E9DDBE">D</text>
+  <circle cx="200" cy="130" r="86" fill="none" stroke="#5A3E12" stroke-width="3"/>
+</svg>

@@ -1,0 +1,55 @@
+{
+  "_ayuda": "Negocios escuderos. Los que llevan fundador:true se muestran con la tarjeta especial dorada. Campos del fundador: desde (año), tagline, descripcion, parada (número de etapa, 1-11), paradaVilla, video {titulo, url}.",
+  "aliados": [
+    {
+      "nombre": "fisiohenares",
+      "tipo": "Fisioterapia y cuidado del cuerpo",
+      "muni": "Alcalá de Henares",
+      "fundador": true,
+      "desde": "2002",
+      "tagline": "Fisioterapia y cuidado del cuerpo",
+      "descripcion": "Donde el cuerpo halla alivio para seguir el camino. En fisiohenares, Dulcinea encuentra descanso y cuidado experto. Centro de fisioterapia en Alcalá de Henares dedicado al alivio del dolor, recuperación muscular, mejora de la movilidad y bienestar corporal.",
+      "parada": 11,
+      "paradaVilla": "Alcalá de Henares",
+      "video": {
+        "titulo": "Ver Short de la visita",
+        "url": "https://www.instagram.com/p/DaxfjJtJ6H0/"
+      },
+      "web": "",
+      "instagram": "",
+      "txt": ""
+    },
+    {
+      "nombre": "Panadería La Espiga",
+      "tipo": "Horno y pan",
+      "muni": "Campo de Criptana",
+      "txt": "Dulcinea recobró fuerzas con un pan que en 1616 aún no existía.",
+      "web": "",
+      "instagram": ""
+    },
+    {
+      "nombre": "Librería El Ingenioso",
+      "tipo": "Libros",
+      "muni": "Quintanar de la Orden",
+      "txt": "Aquí leyó por primera vez el libro que cuenta su propia vida.",
+      "web": "",
+      "instagram": ""
+    },
+    {
+      "nombre": "Fisioterapia Camino Real",
+      "tipo": "Cuidado del cuerpo",
+      "muni": "Tembleque",
+      "txt": "Cuatrocientos años de camino pasan factura. Aquí sanaron sus pies.",
+      "web": "",
+      "instagram": ""
+    },
+    {
+      "nombre": "Óptica Mirada Nueva",
+      "tipo": "Anteojos",
+      "muni": "Ocaña",
+      "txt": "Un mundo tan nuevo merece verse con claridad.",
+      "web": "",
+      "instagram": ""
+    }
+  ]
+}

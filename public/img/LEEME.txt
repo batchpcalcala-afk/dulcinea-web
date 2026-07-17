@@ -1,0 +1,21 @@
+IMÁGENES DE LA WEB
+==================
+
+hero.jpg  →  LA IMAGEN PRINCIPAL. Genera tu imagen de Dulcinea (Kling, Midjourney,
+             Freepik...) y guárdala aquí con ese nombre exacto (hero.jpg, ~1920x1080).
+             Mientras no exista, se muestra automáticamente hero-fallback.svg
+             (paisaje manchego al atardecer dibujado).
+
+Prompt sugerido (ajústalo a tu personaje):
+"Cinematic golden hour scene, a young Spanish woman from 1616 with dark braided
+hair and period linen dress standing in a La Mancha landscape, white windmills
+and a distant Renaissance university city (Alcalá de Henares) in the background,
+warm amber sunset light, floating golden dust particles, painterly realistic
+style, wide 16:9 composition with empty space on the LEFT side for text"
+
+(Importante: pide la composición con el personaje a la DERECHA y espacio libre
+a la izquierda, porque ahí va el panel del título.)
+
+tarjeta-ruta.svg / tarjeta-capitulos.svg / tarjeta-escuderos.svg
+             →  Miniaturas de las tres tarjetas. Puedes sustituirlas por
+                tarjeta-ruta.jpg etc. cambiando la ruta en src/pages/index.astro.
