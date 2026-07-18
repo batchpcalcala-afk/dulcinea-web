@@ -55,4 +55,3 @@ src/layouts/Base.astro  ← <head>, fuentes y SEO
 - Formulario real en «Hacerse escudero» (puede ser un simple `mailto:` o un formulario de Cloudflare/Tally).
 - Página individual por municipio (`src/pages/villa/[slug].astro`) con más turismo y todos sus vídeos.
 - Automatizar `etapas.json` desde la API de YouTube (etiquetando los vídeos por municipio).
-"# dulcinea-web"  
