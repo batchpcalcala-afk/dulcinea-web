@@ -6,7 +6,7 @@ import proyecto from '../data/proyecto.json';
 ---
 <Base
   title="Quiero participar — El Viaje de Dulcinea del Toboso"
-  description="Únete al viaje de Dulcinea: hazte Testigo siguiendo cada jornada, o convierte tu negocio en Escudero y forma parte de la historia.">
+  description="Únete al viaje de Dulcinea: hazte Devoto y sostén su existencia con tu mirada, o convierte tu negocio en Escudero y forma parte de la historia.">
 
 <Nav />
 
@@ -15,42 +15,44 @@ import proyecto from '../data/proyecto.json';
   <div class="contenedor">
     <span class="sc" style="color:var(--lacre);letter-spacing:.3em;font-size:.9rem">Pregón</span>
     <h1>Quiero participar</h1>
-    <p class="lema">Tres maneras hay de acompañar a Dulcinea en su viaje:<br />siendo testigo de su historia, socorriéndola como escudero,<br />o aliándose con su causa.</p>
+    <p class="lema">Tres maneras hay de acompañar a Dulcinea en su viaje:<br />siendo devoto de su historia, socorriéndola como escudero,<br />o aliándose con su causa.</p>
   </div>
 </header>
 
 <section class="participar-vias">
   <div class="contenedor vias-grid">
 
-    <!-- ============ TESTIGOS ============ -->
-    <article class="via revela" id="testigo">
+    <!-- ============ DEVOTOS ============ -->
+    <article class="via revela" id="devoto">
       <span class="via-num">I</span>
-      <h2>Hacerse Testigo</h2>
-      <div class="via-lema">«Si soy una invención… ¿por qué siento?»</div>
-      <p>Cervantes asegura que Dulcinea no existe: que es tinta y papel. Ella ha partido a demostrar lo contrario, pero no puede hacerlo sola — <b>un personaje se vuelve real cuando alguien lo mira</b>. Los <b>Testigos de Dulcinea</b> son quienes, con cada mirada, dan fe de que ella vive. Cuantos más testigos, más real será. Vuestra mirada es su prueba de existencia.</p>
+      <h2>Hacerse Devoto</h2>
+      <div class="via-lema">«Si soy una invención, ¿por qué siento, por qué amo, por qué sufro?»</div>
+      <p>Dulcinea existe porque alguien la mira. Sin miradas, sin corazones que la sigan, ella sería solo tinta sobre papel, un nombre repetido en un libro viejo. Pero vos podéis cambiar eso.</p>
+      <p>Ser <b>Devoto de Dulcinea</b> no es simplemente seguir una cuenta: es sostener su existencia con cada comentario, cada visita, cada momento que le dedicáis. Cada Devoto que la ve, que la comenta, que camina hasta uno de sus Escuderos y prueba que su viaje es real, la hace un poco más real también. Y ella, a su manera, también os ve a vos.</p>
       <div class="via-botones">
         <a class="btn btn-lacre" href={proyecto.youtube} target="_blank" rel="noopener">▶ @elviajededulcinea en YouTube</a>
         <a class="btn btn-perg" href={proyecto.instagram} target="_blank" rel="noopener">@elviajededulcinea en Instagram</a>
       </div>
 
-      <h3 class="via-sub">El registro de los Testigos</h3>
-      <p>Inscribíos en el registro y recibiréis las nuevas del viaje: cada jornada que se escriba, la historia y los lugares que merecen conocerse, los nuevos escuderos que se unan al camino… y mucho más.</p>
-      <p>Y si nos dejáis vuestros nombres de usuario (cosa voluntaria), podremos <b>valorar vuestra participación como Testigos</b>: cada jornada que veáis, cada «me gusta», cada comentario, cada vez que compartáis la historia — e incluso cada visita a nuestros escuderos — <b>suma puntos</b>. Con ellos ganaréis <b>insignias</b> que abren privilegios en todo el mundo de Dulcinea:</p>
+      <h3 class="via-sub">El registro de los Devotos</h3>
+      <p>Cuanto más crece vuestra devoción, más se abre ante vos el viaje. Hay capítulos que aún no han sido contados, momentos que Cervantes nunca escribió, escenas que solo los Devotos más fieles llegan a presenciar antes que nadie. Inscribíos y recibiréis las nuevas del viaje: cada jornada que se escriba, los lugares que merecen conocerse, los nuevos Escuderos del camino… y mucho más.</p>
+      <p>Y si nos dejáis vuestros nombres de usuario (cosa voluntaria), vuestra participación no quedará en silencio: cada jornada que veáis, cada «me gusta», cada comentario, cada vez que compartáis la historia — e incluso cada visita a nuestros Escuderos — <b>suma puntos</b>. Los puntos se convierten en <b>insignias</b>, y cada insignia es una puerta:</p>
       <ul class="via-lista">
-        <li>Descuentos y ventajas en los comercios escuderos.</li>
-        <li>Descargas privadas de contenido del viaje.</li>
+        <li>Contenidos que nadie más ve y adelantos de su historia.</li>
+        <li>Tratos y ventajas especiales en los comercios Escuderos del camino.</li>
         <li>Conocer mejor a Dulcinea… y mucho más.</li>
       </ul>
+      <p><i>Dulcinea necesita devotos para ser real. Vos necesitáis creer para descubrir hasta dónde llega su historia. El trato es justo.</i></p>
 
-      <form id="forma-testigo" class="forma-1616 forma-clara">
+      <form id="forma-devoto" class="forma-1616 forma-clara">
         <div class="campos">
           <label>Vuestro nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
           <label>Correo electrónico<input type="email" name="correo" required placeholder="para recibir las nuevas del viaje" /></label>
           <label>Usuario de YouTube <small>(voluntario)</small><input type="text" name="youtube" placeholder="@vuestrousuario" /></label>
           <label>Usuario de Instagram <small>(voluntario)</small><input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
         </div>
-        <button class="btn btn-lacre" type="submit">🪶 Inscribirme como Testigo</button>
-        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra participación como Testigo.</p>
+        <button class="btn btn-lacre" type="submit">🪶 Uníos. Sed devotos. Hacedla real.</button>
+        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra devoción; lo único público será vuestro seudónimo.</p>
       </form>
     </article>
 
@@ -64,7 +66,7 @@ import proyecto from '../data/proyecto.json';
         <li>Una <b>jornada en vídeo</b> protagonizada por Dulcinea en vuestro establecimiento.</li>
         <li>Vuestro lugar en el <b>mapa oficial del viaje</b> y presencia permanente en esta web.</li>
         <li>Material para redes sociales y un <b>pergamino exclusivo</b> «Dulcinea estuvo aquí».</li>
-        <li>La difusión ante los Testigos que siguen el camino.</li>
+        <li>La difusión ante los Devotos que siguen el camino.</li>
       </ul>
 
       <form id="forma-escudero" class="forma-1616">
@@ -141,10 +143,10 @@ import proyecto from '../data/proyecto.json';
     location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
   });
 
-  document.getElementById('forma-testigo').addEventListener('submit', (ev) => {
+  document.getElementById('forma-devoto').addEventListener('submit', (ev) => {
     ev.preventDefault();
     const f = new FormData(ev.target);
-    const asunto = `Nuevo Testigo de Dulcinea — ${f.get('nombre') || f.get('correo')}`;
+    const asunto = `Nuevo Devoto de Dulcinea — ${f.get('nombre') || f.get('correo')}`;
     const cuerpo = [
       `Nombre: ${f.get('nombre') || '-'}`,
       `Correo: ${f.get('correo')}`,

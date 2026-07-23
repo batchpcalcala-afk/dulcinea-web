@@ -388,3 +388,13 @@ footer{background:var(--pergamino);padding:3.6rem 1.3rem 4.6rem;text-align:cente
 .via-sub{font-family:'IM Fell English',serif;font-size:1.45rem;margin:1.6rem 0 .5rem;padding-top:1.2rem;border-top:1px solid rgba(150,116,31,.4)}
 .forma-1616 label small{font-family:'EB Garamond',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:.78rem;opacity:.85}
 .via p + p{margin-top:.7rem}
+
+/* Añadir al final de src/styles/global.css */
+.ap-botones{margin-left:auto;display:flex;gap:.5rem;flex-wrap:wrap}
+.ap-btn{display:inline-flex;align-items:center;gap:.35rem;font-family:'IM Fell English SC',serif;font-size:.8rem;letter-spacing:.08em;padding:.4rem .85rem;text-decoration:none;box-shadow:2px 2px 0 rgba(43,33,21,.3);transition:background .22s,transform .18s}
+.ap-btn:hover{transform:translateY(-2px)}
+.ap-yt{background:var(--lacre);color:var(--pergamino-claro)}
+.ap-yt:hover{background:#611A13}
+.ap-ig{background:var(--oro);color:var(--tinta)}
+.ap-ig:hover{background:#7A5C18}
+@media (max-width:700px){.ap-botones{margin-left:0}}

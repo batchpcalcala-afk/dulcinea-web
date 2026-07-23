@@ -52,6 +52,10 @@ addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ---------- panel de detalle de etapa ---------- */
+/* ---------- panel de detalle con jornadas (YouTube + Instagram) ----------
+   Sustituye la función verEtapa en src/scripts/portal.js
+   Busca "function verEtapa(i) {" y reemplaza todo el bloque hasta el siguiente "}"
+*/
 function verEtapa(i) {
   const e = ETAPAS[i];
   const panel = document.getElementById('detalle-etapa');
@@ -59,11 +63,24 @@ function verEtapa(i) {
   if (e.jornadas && e.jornadas.length) {
     jornadasHTML = '<div class="apartados">' + e.jornadas.map((a, j) => {
       const num = `${ROM[i]}.${j + 1}`;
-      return a.url
-        ? `<a class="apartado publicado-ap" href="${a.url}" target="_blank" rel="noopener">
-             <span class="ap-num">${num}</span><span class="ap-tit">${a.titulo}</span><span class="ap-estado">▶ Ver vídeo</span></a>`
-        : `<div class="apartado">
-             <span class="ap-num">${num}</span><span class="ap-tit">${a.titulo}</span><span class="ap-estado">⏳ Jornada aún por escribir</span></div>`;
+      const tieneYT = !!a.url;
+      const tieneIG = !!a.instagram;
+      if (tieneYT || tieneIG) {
+        return `<div class="apartado publicado-ap">
+          <span class="ap-num">${num}</span>
+          <span class="ap-tit">${a.titulo}</span>
+          <span class="ap-botones">
+            ${tieneYT ? `<a class="ap-btn ap-yt" href="${a.url}" target="_blank" rel="noopener">▶ YouTube</a>` : ''}
+            ${tieneIG ? `<a class="ap-btn ap-ig" href="${a.instagram}" target="_blank" rel="noopener">◈ Instagram</a>` : ''}
+          </span>
+        </div>`;
+      } else {
+        return `<div class="apartado">
+          <span class="ap-num">${num}</span>
+          <span class="ap-tit">${a.titulo}</span>
+          <span class="ap-estado">⏳ Jornada aún por escribir</span>
+        </div>`;
+      }
     }).join('') + '</div>';
   } else if (e.estado === 'actual') {
     jornadasHTML = '<div class="sin-video">❧ Las jornadas deste capítulo se están escribiendo en este preciso instante.</div>';
@@ -80,6 +97,8 @@ function verEtapa(i) {
   panel.classList.add('visible');
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
 }
+
+
 
 document.querySelectorAll('#capitulos .fila-cap').forEach((card) =>
   card.addEventListener('click', () => {
