@@ -39,10 +39,10 @@ const villas = [
   <img src="/img/comienza-hero.jpg" alt="Dulcinea de espaldas mirando el camino hacia El Toboso al atardecer" />
   <div class="ci-hero-texto">
     <span class="ci-lugar">El Toboso · Año 1616</span>
-    <h1>¿Y si Dulcinea…<br /><em>hubiera decidido<br />demostrar que es real?</em></h1>
+    <h1>¿Y si Dulcinea…<br /><em>hubiera decidido<br />demostrar<br />que es real?</em></h1>
     <p class="ci-subtitulo">Todos conocen la historia de Don Quijote.<br />Pero nadie ha acompañado nunca a Dulcinea.<br /><em>Hasta ahora.</em></p>
-    <a class="ci-btn ci-btn-lacre" href="#video">Comenzar el viaje ↓</a>
-    <p class="ci-tagline">Una historia que comenzó hace más de cuatro siglos…<br />y que aún no ha terminado.</p>
+    <a class="ci-btn ci-btn-lacre" href="#video">Comenzar el viaje</a>
+    <p class="ci-tagline">Una historia que comenzó hace más de cuatro siglos…<br /><em>y que aún no ha terminado.</em></p>
   </div>
 </header>
 
@@ -223,6 +223,11 @@ const villas = [
 .ci-intro{font-style:italic;color:var(--tinta-suave);font-size:1.06rem;max-width:620px;margin:.5rem auto 1.4rem}
 .ci-orn{font-size:1.6rem;color:var(--oro);margin:1.4rem 0}
 .ci-oscuro{background:#20150C;color:#CBB88E}
+/* nav transparente en el hero */
+.nav{transition:background .4s ease,border-color .4s ease}
+.nav.nav-transparente{background:transparent;border-color:transparent}
+.nav.nav-transparente .nav-links a,.nav.nav-transparente .nav-logo .titulo,.nav.nav-transparente .nav-logo .titulo b{color:rgba(239,223,174,.85)}
+.nav.nav-transparente .nav-logo .emblema{border-color:rgba(239,223,174,.5);color:rgba(239,223,174,.7)}
 .ci-oscuro h2{color:#E8D194}
 .ci-oscuro .ci-eyebrow{color:#C9A24B}
 .ci-hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#1A0E06}
@@ -234,7 +239,7 @@ const villas = [
 .ci-hero h1 em{font-style:italic;color:#E8D194}
 .ci-subtitulo{font-family:'EB Garamond',serif;font-size:clamp(1rem,2.8vw,1.3rem);color:#CBB88E;margin-bottom:1.8rem;line-height:1.5}
 .ci-subtitulo em{color:#C9A24B;font-style:italic}
-.ci-tagline{font-family:'EB Garamond',serif;font-style:italic;font-size:.95rem;color:#8A7055;margin-top:1.2rem}
+.ci-tagline{font-family:'EB Garamond',serif;font-style:italic;font-size:.92rem;color:#8A7055;margin-top:1.4rem;line-height:1.6;letter-spacing:.02em}
 .ci-btn{display:inline-block;font-family:'IM Fell English SC',serif;font-size:1rem;letter-spacing:.14em;padding:.95rem 2.1rem;text-decoration:none;transition:transform .2s,background .25s,opacity .2s;box-shadow:3px 3px 0 rgba(15,8,3,.4)}
 .ci-btn:hover{transform:translateY(-3px)}
 .ci-btn-lacre{background:var(--lacre);color:var(--pergamino-claro)}.ci-btn-lacre:hover{background:#611A13}
@@ -308,6 +313,14 @@ const villas = [
 </style>
 
 <script is:inline>
+/* nav transparente sobre el hero */
+const nav = document.querySelector('.nav');
+if (nav) {
+  nav.classList.add('nav-transparente');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-transparente', window.scrollY < window.innerHeight * 0.6);
+  }, { passive: true });
+}
 const obs = new IntersectionObserver((es) => es.forEach((e) => {
   if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
 }), { threshold: 0.1 });
