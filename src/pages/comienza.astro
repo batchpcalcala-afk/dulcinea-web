@@ -46,7 +46,37 @@ const villas = [
   </div>
 </header>
 
-<!-- ===== 2. VÍDEO ===== -->
+<!-- ===== 2. LAND-02 · QUIÉN ES DULCINEA ===== -->
+<section class="ci-seccion ci-land02" id="quien">
+  <div class="ci-contenedor ci-land02-grid">
+    <div class="ci-land02-texto revela">
+      <span class="ci-eyebrow">¿Quién es Dulcinea?</span>
+      <h2>Una invención<br />que empezó a sentir</h2>
+      <div class="ci-land02-narrativa">
+        <p>El mundo la conoce como la dama a quien Don Quijote dedicó sus hazañas.</p>
+        <p>Pero Dulcinea acaba de descubrir algo imposible: Miguel de Cervantes asegura que ella solo existe dentro de una historia.</p>
+        <p>Entonces se hace la pregunta que cambiará para siempre su destino.</p>
+      </div>
+      <blockquote class="ci-cita-central">
+        <span class="ci-cita-linea"></span>
+        <div class="ci-cita-texto">
+          «Si soy una invención…<br />
+          ¿por qué siento?<br />
+          ¿Por qué amo?<br />
+          ¿Por qué sufro?<br />
+          ¿Por qué recuerdo?»
+        </div>
+      </blockquote>
+      <p class="ci-land02-cierre">Para encontrar una respuesta, Dulcinea deberá abandonar El Toboso y emprender un camino hacia la ciudad natal de Cervantes.<br /><br />Pero el viaje no solo la llevará hasta Alcalá de Henares.<br /><em>También la conducirá a través del tiempo.</em></p>
+      <a class="ci-btn ci-btn-secundario" href="#capitulo1">Descubre cómo comenzó →</a>
+    </div>
+    <div class="ci-land02-imagen revela" style="transition-delay:.18s">
+      <img src="/img/mosaico-libro.jpg" alt="Dulcinea ante el libro donde descubre su historia" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. VÍDEO ===== -->
 <section class="ci-seccion ci-oscuro" id="video">
   <div class="ci-contenedor ci-centro">
     <span class="ci-eyebrow">Jornada I.1 · El Toboso · 1616</span>
@@ -60,6 +90,35 @@ const villas = [
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen loading="lazy">
       </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. LAND-03 · EL CAMINO ===== -->
+<section class="ci-seccion ci-land03" id="camino-real">
+  <div class="ci-land03-imagen revela">
+    <img src="/img/land03-camino.jpg" alt="Dulcinea ante el camino de La Mancha hacia Toledo" />
+  </div>
+  <div class="ci-contenedor">
+    <div class="ci-land03-contenido revela" style="transition-delay:.2s">
+      <span class="ci-eyebrow" style="color:#C9A24B">El camino ha comenzado</span>
+      <h2 style="color:#E8D194">Un viaje entre<br />la ficción y la realidad</h2>
+      <p class="ci-land03-texto">Dulcinea parte de El Toboso en 1616 con un propósito: llegar hasta Alcalá de Henares y encontrar al hombre que escribió que ella no era real.</p>
+      <p class="ci-land03-texto">Pero el camino transformará su búsqueda. Atravesará los lugares de Cervantes, conocerá a personas reales y descubrirá que cada pueblo, cada historia y cada encuentro pueden acercarla a la verdad.</p>
+      <div class="ci-land03-frase">
+        <p>Comenzará caminando por La Mancha.</p>
+        <p><em>Terminará atravesando más de cuatro siglos.</em></p>
+      </div>
+      <div class="ci-land03-union">
+        <p class="ci-land03-union-titulo">Su viaje unirá:</p>
+        <div class="ci-land03-pares">
+          <span>Historia <em>y</em> ficción</span>
+          <span>Patrimonio <em>y</em> tecnología</span>
+          <span>Ciudades, comercios <em>y</em> personas reales</span>
+          <span>El mundo de Cervantes <em>y</em> el nuestro</span>
+        </div>
+        <p class="ci-land03-porque">Porque El Viaje de Dulcinea no sucede únicamente dentro de una pantalla.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -246,6 +305,43 @@ const villas = [
 .ci-btn-dorado{background:linear-gradient(160deg,#B08A3E,#8A6423);color:#FBF3DC}.ci-btn-dorado:hover{opacity:.88}
 .ci-btn-grande{font-size:1.15rem;padding:1.15rem 2.6rem}
 .ci-btn-borde-dorado{background:transparent;color:#C9A24B;border:1.5px solid #C9A24B}.ci-btn-borde-dorado:hover{background:rgba(201,162,75,.1)}
+/* ===== LAND-02 · QUIÉN ES DULCINEA ===== */
+.ci-land02{background:var(--pergamino)}
+.ci-land02-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;max-width:1060px;margin:0 auto}
+.ci-land02-texto{text-align:left}
+.ci-land02-texto h2{font-size:clamp(2rem,5.5vw,3rem);margin-bottom:1.2rem;color:var(--tinta)}
+.ci-land02-narrativa p{color:var(--tinta-suave);margin-bottom:.75rem;font-size:1.02rem}
+.ci-cita-central{display:flex;gap:1.2rem;align-items:stretch;margin:1.8rem 0;background:var(--pergamino-claro);padding:1.4rem 1.4rem 1.4rem 0;border:none}
+.ci-cita-linea{flex:0 0 4px;background:var(--lacre);border-radius:2px}
+.ci-cita-texto{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.15rem,2.8vw,1.45rem);color:var(--lacre);line-height:1.65;padding-left:1rem}
+.ci-land02-cierre{font-size:1rem;color:var(--tinta-suave);margin-bottom:1.6rem;line-height:1.7}
+.ci-land02-cierre em{color:var(--tinta);font-style:italic}
+.ci-btn-secundario{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta);font-size:.92rem;letter-spacing:.1em;padding:.75rem 1.6rem;box-shadow:none}
+.ci-btn-secundario:hover{background:var(--pergamino-osc);transform:translateY(-2px)}
+.ci-land02-imagen img{width:100%;display:block;border:2.5px solid var(--tinta);outline:1.5px solid var(--oro);outline-offset:6px}
+@media (max-width:760px){
+  .ci-land02-grid{grid-template-columns:1fr;gap:2rem}
+  .ci-land02-imagen{order:-1}
+  .ci-land02-texto{text-align:left}
+}
+/* ===== LAND-03 · EL CAMINO ===== */
+.ci-land03{padding:0;background:#20150C;overflow:hidden}
+.ci-land03-imagen{position:relative;width:100%;height:clamp(340px,52vw,620px);overflow:hidden}
+.ci-land03-imagen img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;opacity:.82}
+.ci-land03-imagen::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,#20150C 100%)}
+.ci-land03-contenido{padding:2.6rem 0 4rem;max-width:780px;margin:0 auto;text-align:center}
+.ci-land03-contenido h2{font-size:clamp(2rem,5.5vw,3.2rem);margin-bottom:1.2rem}
+.ci-land03-texto{color:#CBB88E;font-size:1.02rem;line-height:1.7;margin-bottom:.8rem;max-width:60ch;margin-left:auto;margin-right:auto}
+.ci-land03-frase{margin:2rem auto;max-width:540px;border:1px solid rgba(201,162,75,.35);padding:1.4rem 1.8rem;background:rgba(201,162,75,.06)}
+.ci-land03-frase p{font-family:'IM Fell English',serif;font-size:clamp(1.1rem,2.8vw,1.4rem);color:#E8D194;line-height:1.6;margin:0}
+.ci-land03-frase p em{color:#C9A24B;font-style:italic}
+.ci-land03-union{margin-top:2.2rem}
+.ci-land03-union-titulo{font-family:'IM Fell English SC',serif;font-size:.88rem;letter-spacing:.25em;color:#C9A24B;margin-bottom:1rem}
+.ci-land03-pares{display:grid;grid-template-columns:1fr 1fr;gap:.6rem 2rem;max-width:520px;margin:0 auto 1.4rem;text-align:left}
+.ci-land03-pares span{font-family:'EB Garamond',serif;font-size:1rem;color:#CBB88E;padding:.35rem 0;border-bottom:1px dotted rgba(201,162,75,.3)}
+.ci-land03-pares span em{color:#C9A24B;font-style:normal;font-family:'IM Fell English SC',serif;font-size:.82rem}
+.ci-land03-porque{font-family:'IM Fell English',serif;font-style:italic;font-size:1.15rem;color:#E8D194;max-width:52ch;margin:0 auto}
+@media (max-width:640px){.ci-land03-pares{grid-template-columns:1fr}}
 .ci-btn-perg{background:var(--pergamino-claro);color:var(--tinta);border:1.5px solid var(--tinta)}.ci-btn-perg:hover{background:var(--pergamino-osc)}
 .ci-video-marco{position:relative;width:100%;max-width:780px;margin:0 auto 1.8rem;padding-top:43.75%;border:2.5px solid rgba(176,138,62,.5);outline:1.5px solid rgba(176,138,62,.3);outline-offset:5px}
 .ci-video-marco iframe{position:absolute;inset:0;width:100%;height:100%}
