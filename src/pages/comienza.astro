@@ -133,36 +133,43 @@ const villas = [
   </div>
 </section>
 
-<!-- ===== 4. EL UNIVERSO ===== -->
-<section class="ci-seccion ci-oscuro" id="universo">
-  <div class="ci-contenedor">
-    <div class="ci-universo-cab revela">
+<!-- ===== 5. LAND-04 · EL UNIVERSO DE DULCINEA ===== -->
+<section class="ci-seccion ci-land04" id="universo">
+  <div class="ci-contenedor ci-centro">
+    <div class="ci-land04-cab revela">
       <span class="ci-eyebrow" style="color:#C9A24B">El Universo de Dulcinea</span>
-      <h2 style="color:#E8D194">Una historia que ya no cabe en un libro</h2>
-      <p class="ci-intro" style="color:#CBB88E">El Viaje de Dulcinea nace como una historia cinematográfica, pero su camino no termina en la pantalla. Cada jornada conecta ficción, historia, patrimonio, ciudades, comercios y personas reales.</p>
-      <p class="ci-frase-central">Una protagonista nacida en la ficción.<br /><em>Un viaje que está ocurriendo en el mundo real.</em></p>
+      <h2 style="color:#E8D194">Un universo que une<br />historia, personas y lugares</h2>
+      <p class="ci-land04-intro">
+        <em>El Viaje de Dulcinea es mucho más que una historia.<br />
+        Es un universo vivo que crece con cada capítulo,<br />
+        cada lector, cada espectador y cada devoto.</em>
+      </p>
     </div>
-
-    <img class="ci-universo-img revela" src="/img/universo-dulcinea.jpg" alt="El Universo de Dulcinea — seis pilares conectados" style="transition-delay:.15s" />
-
-    <div class="ci-pilares">
-      {pilares.map((p, i) => (
-        <article class="ci-pilar revela" style={`transition-delay:${0.08 * i}s`}>
-          <div class="ci-pilar-img" style={`background-image:url('${p.img}')`}></div>
-          <div class="ci-pilar-txt">
-            <span class="ci-pilar-sub">{p.sub}</span>
-            <h3>{p.titulo}</h3>
-            <p>{p.txt}</p>
-          </div>
-        </article>
+    <div class="ci-land04-imagen revela" style="transition-delay:.15s">
+      <img src="/img/land04-universo.jpg" alt="El Universo de Dulcinea — libros, serie, rutas, escuderos, devotos y patrimonio" />
+    </div>
+    <div class="ci-land04-pilares revela" style="transition-delay:.25s">
+      {[
+        { ico:'📖', titulo:'Libros', txt:'La historia completa de cada jornada: contexto, personajes, patrimonio y secretos que el tiempo escondió.' },
+        { ico:'🎬', titulo:'Serie cinematográfica', txt:'Capítulos audiovisuales llenos de emoción, hechos con tecnología de última generación.' },
+        { ico:'📍', titulo:'Rutas', txt:'Un viaje real por los lugares de Cervantes. Caminos que Dulcinea recorre y tú puedes descubrir.' },
+        { ico:'🛡', titulo:'Escuderos', txt:'Comercios y negocios que apoyan el viaje y ayudan a que la historia llegue más lejos.' },
+        { ico:'🤝', titulo:'Devotos', txt:'Una comunidad que hace posible que Dulcinea siga su camino. Tú también formas parte del viaje.' },
+        { ico:'🏛', titulo:'Patrimonio', txt:'Historia, cultura y legado unidos para mantener vivo lo que nos hace quienes somos.' },
+      ].map((p) => (
+        <div class="ci-land04-pilar">
+          <span class="ci-land04-ico">{p.ico}</span>
+          <strong>{p.titulo}</strong>
+          <p>{p.txt}</p>
+        </div>
       ))}
     </div>
-
-    <div class="ci-expansion revela">
-      {chips.map(c => <span class="ci-chip">{c}</span>)}
+    <div class="ci-land04-expansion revela" style="transition-delay:.35s">
+      {['Podcasts','Experiencias','Insignias','Recompensas','Encuentros','Y mucho más…'].map(c => (
+        <span class="ci-chip">{c}</span>
+      ))}
     </div>
-
-    <div class="ci-universo-cta revela">
+    <div class="ci-land04-cta revela" style="transition-delay:.4s">
       <a class="ci-btn ci-btn-dorado" href="/participar#devoto">✦ Quiero formar parte</a>
       <a class="ci-btn ci-btn-borde-dorado" href="/">Explorar la web completa →</a>
     </div>
@@ -233,21 +240,67 @@ const villas = [
   </div>
 </section>
 
-<!-- ===== 7. HAZTE DEVOTO ===== -->
-<section class="ci-seccion ci-devoto-seccion" id="devoto">
-  <div class="ci-contenedor ci-centro">
-    <span class="ci-eyebrow">Los Devotos de Dulcinea</span>
-    <h2>Ayuda a que Dulcinea<br />siga existiendo</h2>
-    <p class="ci-intro">Dulcinea existe porque alguien la mira. Cada comentario, cada visita, cada capítulo compartido hace que su historia llegue a otra persona. Y eso hace que el viaje continúe.</p>
-    <p class="ci-intro"><em>Ya no estás ante un registro. Estás ante una misión.</em></p>
-    <div class="ci-ventajas revela">
-      <div class="ci-v">🪶<span>Recibe cada jornada antes que nadie</span></div>
-      <div class="ci-v">⚜<span>Gana puntos e insignias por tu devoción</span></div>
-      <div class="ci-v">📖<span>Contenido exclusivo que Cervantes nunca escribió</span></div>
-      <div class="ci-v">🛡<span>Ventajas en los comercios Escuderos del camino</span></div>
+<!-- ===== 7. LAND-05 · LOS DEVOTOS ===== -->
+<section class="ci-land05" id="devoto">
+
+  <!-- imagen a pantalla completa -->
+  <div class="ci-land05-imagen">
+    <img src="/img/land05-devotos.jpg" alt="Dulcinea rodeada de devotos en una plaza histórica al atardecer" />
+    <div class="ci-land05-imagen-sombra"></div>
+  </div>
+
+  <div class="ci-contenedor ci-centro ci-land05-cuerpo">
+
+    <!-- encabezado -->
+    <div class="ci-land05-cab revela">
+      <span class="ci-eyebrow" style="color:#C9A24B">Los Devotos de Dulcinea</span>
+      <h2 style="color:#E8D194">Una historia solo existe<br />mientras alguien la mantenga viva</h2>
+      <p class="ci-land05-texto">Durante más de cuatro siglos, millones de personas han pronunciado el nombre de Dulcinea.<br />Pero nunca antes habían podido caminar junto a ella.</p>
+      <p class="ci-land05-texto">Hoy ese viaje continúa gracias a quienes deciden descubrir su historia, compartirla y hacer que llegue a nuevas personas.<br /><em>Cada Devoto mantiene vivo un pequeño fragmento del camino.</em></p>
     </div>
-    <a class="ci-btn ci-btn-dorado ci-btn-grande" href="/participar#devoto">🪶 Únete. Sé devoto. Hazla real.</a>
-    <p class="ci-nota">Gratis. Sin compromisos. Solo tu mirada.</p>
+
+    <!-- frase de pasos -->
+    <div class="ci-land05-pasos revela" style="transition-delay:.15s">
+      {['Cada visualización.','Cada comentario.','Cada visita.','Cada historia compartida.'].map((paso, i) => (
+        <div class="ci-land05-paso">
+          <span class="ci-land05-n">{i + 1}</span>
+          <span class="ci-land05-paso-txt">{paso}</span>
+        </div>
+      ))}
+      <div class="ci-land05-paso ci-land05-paso-final">
+        <span class="ci-land05-n">→</span>
+        <span class="ci-land05-paso-txt">Es un paso más para Dulcinea.</span>
+      </div>
+    </div>
+
+    <!-- qué significa ser devoto -->
+    <div class="ci-land05-que revela" style="transition-delay:.25s">
+      <p class="ci-land05-que-intro">No es una suscripción. No es un club.<br /><em>Es formar parte de una historia que sigue escribiéndose entre todos.</em></p>
+      <div class="ci-land05-lista">
+        {[
+          'Recibir antes que nadie cada nueva jornada.',
+          'Conseguir insignias y recompensas.',
+          'Descubrir contenido exclusivo.',
+          'Participar en retos y rutas.',
+          'Ayudar a que el viaje siga creciendo.',
+          'Compartir la pasión por Cervantes, la historia y Dulcinea.',
+        ].map(item => (
+          <div class="ci-land05-item">
+            <span class="ci-land05-flor">❧</span>
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="ci-land05-cta revela" style="transition-delay:.35s">
+      <a class="ci-btn ci-btn-dorado ci-btn-grande" href="/participar#devoto">
+        🪶 Quiero caminar junto a Dulcinea
+      </a>
+      <p class="ci-land05-nota">Ser Devoto es gratuito.<br />Lo único que necesita Dulcinea es que alguien continúe escuchando su historia.</p>
+    </div>
+
   </div>
 </section>
 
@@ -342,6 +395,45 @@ const villas = [
 .ci-land03-pares span em{color:#C9A24B;font-style:normal;font-family:'IM Fell English SC',serif;font-size:.82rem}
 .ci-land03-porque{font-family:'IM Fell English',serif;font-style:italic;font-size:1.15rem;color:#E8D194;max-width:52ch;margin:0 auto}
 @media (max-width:640px){.ci-land03-pares{grid-template-columns:1fr}}
+/* ===== LAND-04 · EL UNIVERSO ===== */
+.ci-land04{background:#20150C}
+.ci-land04-cab{max-width:720px;margin:0 auto 2rem}
+.ci-land04-intro{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1rem,2.6vw,1.25rem);color:#CBB88E;line-height:1.6;margin-top:.8rem}
+.ci-land04-imagen{width:100%;max-width:1000px;margin:0 auto 3rem}
+.ci-land04-imagen img{width:100%;display:block;border:1.5px solid rgba(176,138,62,.3)}
+.ci-land04-pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;text-align:left}
+.ci-land04-pilar{background:rgba(233,221,190,.05);border:1px solid rgba(176,138,62,.2);padding:1.3rem 1.2rem}
+.ci-land04-ico{font-size:1.6rem;display:block;margin-bottom:.5rem}
+.ci-land04-pilar strong{font-family:'IM Fell English SC',serif;font-size:.9rem;letter-spacing:.12em;color:#C9A24B;display:block;margin-bottom:.4rem}
+.ci-land04-pilar p{font-size:.92rem;color:#CBB88E;line-height:1.55;margin:0}
+.ci-land04-expansion{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:1.6rem 0 2.2rem}
+.ci-land04-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+@media (max-width:760px){.ci-land04-pilares{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.ci-land04-pilares{grid-template-columns:1fr}}
+/* ===== LAND-05 · LOS DEVOTOS ===== */
+.ci-land05{background:#20150C;padding-bottom:5.5rem}
+.ci-land05-imagen{position:relative;width:100%;height:clamp(380px,55vw,640px);overflow:hidden}
+.ci-land05-imagen img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:.78}
+.ci-land05-imagen-sombra{position:absolute;inset:0;background:linear-gradient(0deg,#20150C 0%,rgba(32,21,12,.6) 45%,transparent 100%)}
+.ci-land05-cuerpo{padding-top:3rem;text-align:center}
+.ci-land05-cab h2{font-size:clamp(1.9rem,5.5vw,3rem);margin-bottom:1.2rem}
+.ci-land05-texto{color:#CBB88E;font-size:1.03rem;line-height:1.7;max-width:62ch;margin:.5rem auto .9rem}
+.ci-land05-texto em{color:#E8D194;font-style:italic}
+.ci-land05-pasos{display:flex;flex-direction:column;gap:.5rem;max-width:500px;margin:2rem auto;border:1px solid rgba(201,162,75,.25);padding:1.6rem 1.8rem;background:rgba(201,162,75,.05)}
+.ci-land05-paso{display:flex;align-items:baseline;gap:1rem}
+.ci-land05-n{font-family:'IM Fell English',serif;font-size:1.1rem;color:#C9A24B;flex:0 0 28px;text-align:right}
+.ci-land05-paso-txt{font-family:'EB Garamond',serif;font-size:1.05rem;color:#CBB88E;text-align:left}
+.ci-land05-paso-final .ci-land05-paso-txt{color:#E8D194;font-style:italic;font-size:1.12rem}
+.ci-land05-paso-final{border-top:1px solid rgba(201,162,75,.3);margin-top:.5rem;padding-top:.8rem}
+.ci-land05-que{max-width:680px;margin:2.4rem auto 0}
+.ci-land05-que-intro{font-family:'IM Fell English',serif;font-size:clamp(1.05rem,2.8vw,1.3rem);color:#E8D194;margin-bottom:1.4rem;line-height:1.55}
+.ci-land05-que-intro em{color:#C9A24B}
+.ci-land05-lista{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;text-align:left;margin-bottom:1.4rem}
+.ci-land05-item{display:flex;gap:.6rem;align-items:baseline;font-size:.97rem;color:#CBB88E;padding:.4rem 0;border-bottom:1px dotted rgba(201,162,75,.2)}
+.ci-land05-flor{color:#C9A24B;flex:0 0 auto;font-size:.9rem}
+.ci-land05-cta{margin-top:2.4rem}
+.ci-land05-nota{font-style:italic;font-size:.9rem;color:#8A7055;margin-top:1rem;line-height:1.6}
+@media (max-width:600px){.ci-land05-lista{grid-template-columns:1fr}}
 .ci-btn-perg{background:var(--pergamino-claro);color:var(--tinta);border:1.5px solid var(--tinta)}.ci-btn-perg:hover{background:var(--pergamino-osc)}
 .ci-video-marco{position:relative;width:100%;max-width:780px;margin:0 auto 1.8rem;padding-top:43.75%;border:2.5px solid rgba(176,138,62,.5);outline:1.5px solid rgba(176,138,62,.3);outline-offset:5px}
 .ci-video-marco iframe{position:absolute;inset:0;width:100%;height:100%}
