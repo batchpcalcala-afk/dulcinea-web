@@ -2,8 +2,11 @@
 ---
 <nav class="nav">
   <a class="nav-logo" href="/">
-    <span class="emblema">❦</span>
-    <span class="titulo">El Viaje de<b>DULCINEA</b></span>
+    <img src="/img/logo-dulcinea.png" alt="El Viaje de Dulcinea" class="nav-logo-img" />
+    <span class="nav-logo-texto">
+      <span class="nav-logo-pre">El Viaje de</span>
+      <span class="nav-logo-nombre">DULCINEA</span>
+    </span>
   </a>
   <ul class="nav-links">
     <li><a href="/#capitulos">Historia</a></li>
@@ -13,3 +16,11 @@
     <li><a href="/participar">Contacto</a></li>
   </ul>
 </nav>
+
+<style>
+.nav-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.nav-logo-img{width:38px;height:38px;object-fit:contain;flex:0 0 38px}
+.nav-logo-texto{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-pre{font-family:'EB Garamond',serif;font-size:.72rem;color:#C9A24B;letter-spacing:.08em}
+.nav-logo-nombre{font-family:'IM Fell English SC',serif;font-size:1.1rem;color:var(--pergamino-claro);letter-spacing:.12em}
+</style>

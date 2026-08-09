@@ -150,15 +150,15 @@ const villas = [
     </div>
     <div class="ci-land04-pilares revela" style="transition-delay:.25s">
       {[
-        { ico:'📖', titulo:'Libros', txt:'La historia completa de cada jornada: contexto, personajes, patrimonio y secretos que el tiempo escondió.' },
-        { ico:'🎬', titulo:'Serie cinematográfica', txt:'Capítulos audiovisuales llenos de emoción, hechos con tecnología de última generación.' },
-        { ico:'📍', titulo:'Rutas', txt:'Un viaje real por los lugares de Cervantes. Caminos que Dulcinea recorre y tú puedes descubrir.' },
-        { ico:'🛡', titulo:'Escuderos', txt:'Comercios y negocios que apoyan el viaje y ayudan a que la historia llegue más lejos.' },
-        { ico:'🤝', titulo:'Devotos', txt:'Una comunidad que hace posible que Dulcinea siga su camino. Tú también formas parte del viaje.' },
-        { ico:'🏛', titulo:'Patrimonio', txt:'Historia, cultura y legado unidos para mantener vivo lo que nos hace quienes somos.' },
+        { img:'/img/mosaico-libro.jpg', titulo:'Libros', txt:'La historia completa de cada jornada: contexto, personajes, patrimonio y secretos que el tiempo escondió.' },
+        { img:'/img/mosaico-serie.jpg', titulo:'Serie cinematográfica', txt:'Capítulos audiovisuales llenos de emoción, hechos con tecnología de última generación.' },
+        { img:'/img/mosaico-rutas.jpg', titulo:'Rutas', txt:'Un viaje real por los lugares de Cervantes. Caminos que Dulcinea recorre y tú puedes descubrir.' },
+        { img:'/img/mosaico-escuderos.jpg', titulo:'Escuderos', txt:'Comercios y negocios que apoyan el viaje y ayudan a que la historia llegue más lejos.' },
+        { img:'/img/mosaico-devotos.jpg', titulo:'Devotos', txt:'Una comunidad que hace posible que Dulcinea siga su camino. Tú también formas parte del viaje.' },
+        { img:'/img/mosaico-turismo.jpg', titulo:'Patrimonio', txt:'Historia, cultura y legado unidos para mantener vivo lo que nos hace quienes somos.' },
       ].map((p) => (
         <div class="ci-land04-pilar">
-          <span class="ci-land04-ico">{p.ico}</span>
+          <div class="ci-land04-pilar-img" style={`background-image:url('${p.img}')`}></div>
           <strong>{p.titulo}</strong>
           <p>{p.txt}</p>
         </div>
@@ -403,7 +403,7 @@ const villas = [
 .ci-land04-imagen img{width:100%;display:block;border:1.5px solid rgba(176,138,62,.3)}
 .ci-land04-pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;text-align:left}
 .ci-land04-pilar{background:rgba(233,221,190,.05);border:1px solid rgba(176,138,62,.2);padding:1.3rem 1.2rem}
-.ci-land04-ico{font-size:1.6rem;display:block;margin-bottom:.5rem}
+.ci-land04-pilar-img{height:130px;background-size:cover;background-position:center;margin:-1.3rem -1.2rem 1rem;}
 .ci-land04-pilar strong{font-family:'IM Fell English SC',serif;font-size:.9rem;letter-spacing:.12em;color:#C9A24B;display:block;margin-bottom:.4rem}
 .ci-land04-pilar p{font-size:.92rem;color:#CBB88E;line-height:1.55;margin:0}
 .ci-land04-expansion{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:1.6rem 0 2.2rem}
