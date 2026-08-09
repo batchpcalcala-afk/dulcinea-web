@@ -176,34 +176,21 @@ const villas = [
   </div>
 </section>
 
-<!-- ===== 5. LÍNEA TEMPORAL ===== -->
-<section class="ci-seccion ci-linea-seccion" id="camino">
+<!-- ===== 5. MAPA DEL CAMINO ===== -->
+<section class="ci-seccion ci-oscuro" id="camino" style="padding-top:4rem;padding-bottom:4rem">
   <div class="ci-contenedor ci-centro">
-    <span class="ci-eyebrow">El viaje acaba de comenzar</span>
-    <h2>Todo lo que está por venir</h2>
-    <p class="ci-intro">Esto va a durar años. Y tú puedes estar desde el principio.</p>
-    <div class="ci-timeline revela">
-      <div class="ci-tl-extremo">1616</div>
-      <div class="ci-tl-linea">
-        {villas.map(v => (
-          <div class={`ci-tl-villa ${v.estado}`}>
-            <div class="ci-tl-punto"></div>
-            <div class="ci-tl-info">
-              <strong>{v.n}</strong>
-              <span>{v.desc}</span>
-            </div>
-          </div>
-        ))}
-        <div class="ci-tl-villa futuro">
-          <div class="ci-tl-punto ci-tl-punto-oro"></div>
-          <div class="ci-tl-info">
-            <strong style="color:var(--oro)">¿Y después?</strong>
-            <span>El universo seguirá creciendo</span>
-          </div>
-        </div>
-      </div>
-      <div class="ci-tl-extremo" style="color:var(--oro)">2026<br /><em style="font-size:.9rem;color:var(--tinta-suave)">y más allá</em></div>
+    <span class="ci-eyebrow">El camino de Dulcinea</span>
+    <h2 style="color:#E8D194">El viaje acaba de comenzar</h2>
+    <p class="ci-intro">Solo El Toboso está disponible. El resto del camino se irá revelando a medida que crezca la comunidad de Devotos.</p>
+    <div class="mapa-bloq-marco revela" style="max-width:960px;margin:1.4rem auto 1rem">
+      <img
+        src="/img/mapa-bloqueado.jpg"
+        alt="Mapa del viaje de Dulcinea con destinos bloqueados. Solo El Toboso disponible."
+        class="mapa-bloq-img"
+      />
+      <a class="mapa-toboso-zona" href="#capitulo1" aria-label="El Toboso — Disponible"></a>
     </div>
+    <p class="mapa-bloq-nota" style="color:#8A7055">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto" style="color:#C9A24B">Unirse al viaje →</a></p>
   </div>
 </section>
 

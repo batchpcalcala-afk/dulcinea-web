@@ -246,3 +246,15 @@ footer{background:var(--pergamino);padding:3.6rem 1.3rem 4.6rem;text-align:cente
 .fundador-vbtn:hover{transform:translateY(-2px)}
 .fundador-vbtn-yt{background:#7E241B;color:#FBF3DC;border-color:#5A1810}.fundador-vbtn-yt:hover{background:#611A13}
 .fundador-vbtn-ig{background:rgba(176,138,62,.15);color:#E8D194;border-color:#B08A3E}.fundador-vbtn-ig:hover{background:rgba(176,138,62,.3)}
+
+/* ===== MAPA BLOQUEADO ===== */
+.mapa-bloq-seccion{background:var(--pergamino-osc);padding:4rem 1.3rem}
+.mapa-bloq-marco{position:relative;border:3px solid var(--tinta);outline:2px solid var(--oro);outline-offset:6px;box-shadow:0 24px 60px rgba(43,33,21,.35);line-height:0;overflow:hidden}
+.mapa-bloq-img{width:100%;height:auto;display:block}
+.mapa-toboso-zona{position:absolute;right:0;bottom:0;width:20%;height:38%;cursor:pointer;border-radius:4px;transition:background .3s}
+.mapa-toboso-zona:hover{background:rgba(150,116,31,.12)}
+.mapa-toboso-zona::after{content:'Ver Capítulo I →';position:absolute;bottom:8%;left:50%;transform:translateX(-50%);font-family:'IM Fell English SC',serif;font-size:.75rem;letter-spacing:.12em;color:rgba(43,33,21,.0);background:rgba(150,116,31,.85);padding:.35rem .8rem;white-space:nowrap;transition:color .3s}
+.mapa-toboso-zona:hover::after{color:#FBF3DC}
+.mapa-bloq-nota{font-style:italic;font-size:.92rem;color:var(--tinta-suave);margin-top:1rem;text-align:center}
+.mapa-bloq-nota a{color:var(--lacre);text-decoration:none}
+.mapa-bloq-nota a:hover{text-decoration:underline}

@@ -70,6 +70,33 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
   <svg class="molino-fondo der" width="120" height="150" viewBox="0 0 120 150" fill="currentColor"><path d="M45,150 L75,150 L68,60 L52,60 Z"/><circle cx="60" cy="52" r="13"/><g stroke="currentColor" stroke-width="5" stroke-linecap="round"><line x1="60" y1="52" x2="105" y2="24"/><line x1="60" y1="52" x2="16" y2="20"/><line x1="60" y1="52" x2="95" y2="92"/><line x1="60" y1="52" x2="22" y2="86"/></g></svg>
 </div>
 
+<!-- ===== MAPA BLOQUEADO ===== -->
+<section class="mapa-bloq-seccion" id="mapa">
+  <div class="contenedor">
+    <div class="cabecera-seccion revela">
+      <span class="sc">La Ruta</span>
+      <h2>El camino de Dulcinea</h2>
+      <p>Solo El Toboso está disponible. El resto del camino se irá revelando a medida que crezca la comunidad de Devotos.</p>
+    </div>
+    <div class="mapa-bloq-marco revela" style="transition-delay:.15s">
+      <img
+        src="/img/mapa-bloqueado.jpg"
+        alt="Mapa del viaje de Dulcinea con destinos bloqueados por candados dorados. Solo El Toboso aparece disponible."
+        class="mapa-bloq-img"
+        usemap="#mapa-toboso"
+      />
+      <!-- zona clicable sobre El Toboso (esquina inferior derecha ~83-100%, 68-100%) -->
+      <a
+        class="mapa-toboso-zona"
+        href="#capitulos"
+        aria-label="El Toboso — Disponible. Ver Capítulo I"
+        title="El Toboso · Disponible — Ver Capítulo I"
+      ></a>
+    </div>
+    <p class="mapa-bloq-nota revela">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto">Unirse al viaje →</a></p>
+  </div>
+</section>
+
 <!-- ===== CAPÍTULOS ===== -->
 <section id="capitulos">
   <div class="contenedor">
