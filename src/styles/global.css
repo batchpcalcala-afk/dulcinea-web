@@ -258,3 +258,12 @@ footer{background:var(--pergamino);padding:3.6rem 1.3rem 4.6rem;text-align:cente
 .mapa-bloq-nota{font-style:italic;font-size:.92rem;color:var(--tinta-suave);margin-top:1rem;text-align:center}
 .mapa-bloq-nota a{color:var(--lacre);text-decoration:none}
 .mapa-bloq-nota a:hover{text-decoration:underline}
+
+/* ===== FRASE CON IMAGEN DE FONDO ===== */
+.ci-frase-imagen{position:relative;overflow:hidden;text-align:center}
+.ci-frase-imagen img{width:100%;height:auto;display:block;max-height:520px;object-fit:cover;object-position:center 40%}
+.ci-frase-imagen-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,4,.55) 0%,rgba(20,12,4,.72) 50%,rgba(20,12,4,.55) 100%)}
+.ci-frase-imagen-texto{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.4rem}
+.ci-frase-imagen-texto .ci-frase-grande{font-family:'IM Fell English',serif;font-size:clamp(1.6rem,5vw,2.8rem);line-height:1.25;margin:.15rem 0}
+.ci-frase-imagen-texto .ci-frase-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(.95rem,2.6vw,1.2rem);max-width:580px;margin:.6rem auto 0;opacity:.9}
+.ci-frase-imagen-texto .ci-orn{font-size:1.4rem;margin:.8rem 0}
