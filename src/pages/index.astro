@@ -154,6 +154,30 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
         <div class="fundador-tagline">{f.tagline}</div>
         <div class="fundador-orn">✦</div>
         <p class="fundador-desc">{f.descripcion}</p>
+        {f.video?.youtubeId && (
+          <div class="fundador-video revela">
+            <a class="fundador-video-thumb" href={f.video.youtube} target="_blank" rel="noopener" aria-label="Ver en YouTube">
+              <img
+                src={`https://img.youtube.com/vi/${f.video.youtubeId}/maxresdefault.jpg`}
+                alt={`Short de la visita de Dulcinea a ${f.paradaVilla}`}
+                onerror="this.src='https://img.youtube.com/vi/${f.video.youtubeId}/hqdefault.jpg'"
+              />
+              <span class="fundador-play-btn">▶</span>
+            </a>
+            <div class="fundador-video-btns">
+              <a class="fundador-vbtn fundador-vbtn-yt" href={f.video.youtube} target="_blank" rel="noopener">
+                <svg width="20" height="14" viewBox="0 0 28 20" fill="currentColor"><path d="M27.4 3.1A3.5 3.5 0 0 0 25 .7C22.8 0 14 0 14 0S5.2 0 3 .7A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9A3.5 3.5 0 0 0 3 19.3C5.2 20 14 20 14 20s8.8 0 11-.7a3.5 3.5 0 0 0 2.4-2.4C28 14.7 28 10 28 10s0-4.7-.6-6.9ZM11.2 14.3V5.7L18.5 10l-7.3 4.3Z"/></svg>
+                Ver en YouTube
+              </a>
+              {f.video.instagram && (
+                <a class="fundador-vbtn fundador-vbtn-ig" href={f.video.instagram} target="_blank" rel="noopener">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  Ver en Instagram
+                </a>
+              )}
+            </div>
+          </div>
+        )}
         <div class="fundador-pie">
           <div class="fundador-parada">{ROMANOS[f.parada-1]}</div>
           <div class="fundador-lugar">
@@ -161,11 +185,6 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
             <div class="sub">Parada {ROMANOS[f.parada-1]} del itinerario de Dulcinea</div>
             <div class="aqui">Dulcinea estuvo aquí</div>
           </div>
-          {f.video?.url && (
-            <a class="btn-fundador" href={f.video.url} target="_blank" rel="noopener">
-              <span class="play">▶</span><span>Ver Short<small>de la visita</small></span>
-            </a>
-          )}
         </div>
       </article>
     ))}
