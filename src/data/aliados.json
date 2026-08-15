@@ -7,11 +7,13 @@
       "tagline": "Fisioterapia y cuidado del cuerpo",
       "descripcion": "Donde el cuerpo halla alivio para seguir el camino. En fisiohenares, Dulcinea encuentra descanso y cuidado experto. Centro de fisioterapia en Alcalá de Henares dedicado al alivio del dolor, recuperación muscular, mejora de la movilidad y bienestar corporal.",
       "parada": 11, "paradaVilla": "Alcalá de Henares",
+      "foto": "/img/fundador-fisiohenares-foto.jpg",
       "video": {
         "titulo": "Ver Short de la visita",
         "youtube": "https://www.youtube.com/shorts/rP02KZNvtDY",
         "youtubeId": "rP02KZNvtDY",
-        "instagram": "https://www.instagram.com/p/DaxfjJtJ6H0/"
+        "instagram": "https://www.instagram.com/p/DaxfjJtJ6H0/",
+        "visualizaciones": "+2.000"
       },
       "web": "", "instagram": "", "txt": ""
     }

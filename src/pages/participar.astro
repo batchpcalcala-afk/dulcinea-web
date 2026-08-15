@@ -3,6 +3,10 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Colofon from '../components/Colofon.astro';
 import proyecto from '../data/proyecto.json';
+
+const waLink = (texto: string) => `https://wa.me/${proyecto.whatsapp}?text=${encodeURIComponent(texto)}`;
+const waDevoto = waLink('Hola, quiero hacerme Devoto de Dulcinea y saber cómo puedo participar');
+const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo hacerme Escudero de Dulcinea');
 ---
 <Base
   title="Quiero participar — El Viaje de Dulcinea del Toboso"
@@ -52,7 +56,7 @@ import proyecto from '../data/proyecto.json';
           <label>Usuario de Instagram <small>(voluntario)</small><input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
         </div>
         <button class="btn btn-lacre" type="submit">🪶 Uníos. Sed devotos. Hacedla real.</button>
-        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra devoción; lo único público será vuestro seudónimo.</p>
+        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra devoción; lo único público será vuestro seudónimo. Si lo preferís, escribidnos directamente por <a href={waDevoto} target="_blank" rel="noopener">WhatsApp</a>.</p>
       </form>
     </article>
 
@@ -79,7 +83,7 @@ import proyecto from '../data/proyecto.json';
         </div>
         <label>Contadnos de vuestro negocio<textarea name="mensaje" rows="4" placeholder="Qué hacéis, desde cuándo, y por qué queréis acompañar a Dulcinea…"></textarea></label>
         <button class="btn btn-lacre" type="submit">🪶 Enviar la solicitud</button>
-        <p class="forma-nota">La solicitud se abre en vuestro correo, lista para enviar. Si lo preferís, escribidnos directamente a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a></p>
+        <p class="forma-nota">La solicitud se abre en vuestro correo, lista para enviar. Si lo preferís, escribidnos directamente a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a> o por <a href={waEscudero} target="_blank" rel="noopener">WhatsApp</a></p>
       </form>
     </article>
 

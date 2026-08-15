@@ -2,6 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Colofon from '../components/Colofon.astro';
+import proyecto from '../data/proyecto.json';
+
+const waLink = (texto: string) => `https://wa.me/${proyecto.whatsapp}?text=${encodeURIComponent(texto)}`;
+const waGeneral = waLink('Hola, acabo de descubrir El Viaje de Dulcinea y me gustaría más información sobre el proyecto');
+const waDevoto = waLink('Hola, quiero hacerme Devoto de Dulcinea y saber cómo puedo participar');
 
 const pilares = [
   { img: '/img/mosaico-serie.jpg', sub: 'La historia cobra vida', titulo: 'Serie cinematográfica', txt: 'Capítulos audiovisuales creados con lenguaje cinematográfico, voces y escenarios históricos. Cada jornada revela una nueva parte del misterio de Dulcinea.' },
@@ -173,6 +178,7 @@ const villas = [
     </div>
     <div class="ci-land04-cta revela" style="transition-delay:.4s">
       <a class="ci-btn ci-btn-dorado" href="/participar#devoto">✦ Quiero formar parte</a>
+      <a class="ci-btn ci-btn-whatsapp" href={waGeneral} target="_blank" rel="noopener">💬 Preguntar por WhatsApp</a>
       <a class="ci-btn ci-btn-borde-dorado" href="/">Explorar la web completa →</a>
     </div>
   </div>
@@ -192,7 +198,7 @@ const villas = [
       />
       <a class="mapa-toboso-zona" href="#capitulo1" aria-label="El Toboso — Disponible"></a>
     </div>
-    <p class="mapa-bloq-nota" style="color:#8A7055">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto" style="color:#C9A24B">Unirse al viaje →</a></p>
+    <p class="mapa-bloq-nota" style="color:#8A7055">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto" style="color:#C9A24B">Unirse al viaje →</a> · <a href={waDevoto} target="_blank" rel="noopener" style="color:#C9A24B">WhatsApp</a></p>
   </div>
 </section>
 
@@ -287,6 +293,7 @@ const villas = [
       <a class="ci-btn ci-btn-dorado ci-btn-grande" href="/participar#devoto">
         🪶 Quiero caminar junto a Dulcinea
       </a>
+      <a class="ci-btn ci-btn-whatsapp" href={waDevoto} target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
       <p class="ci-land05-nota">Ser Devoto es gratuito.<br />Lo único que necesita Dulcinea es que alguien continúe escuchando su historia.</p>
     </div>
 
@@ -347,6 +354,7 @@ const villas = [
 .ci-btn-dorado{background:linear-gradient(160deg,#B08A3E,#8A6423);color:#FBF3DC}.ci-btn-dorado:hover{opacity:.88}
 .ci-btn-grande{font-size:1.15rem;padding:1.15rem 2.6rem}
 .ci-btn-borde-dorado{background:transparent;color:#C9A24B;border:1.5px solid #C9A24B}.ci-btn-borde-dorado:hover{background:rgba(201,162,75,.1)}
+.ci-btn-whatsapp{background:#25603F;color:#F0E4C4;border:1.5px solid #3C8B5F}.ci-btn-whatsapp:hover{background:#1C4A31}
 /* ===== LAND-02 · QUIÉN ES DULCINEA ===== */
 .ci-land02{background:var(--pergamino)}
 .ci-land02-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;max-width:1060px;margin:0 auto}

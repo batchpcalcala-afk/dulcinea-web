@@ -4,6 +4,11 @@ import Nav from '../components/Nav.astro';
 import Colofon from '../components/Colofon.astro';
 import datosEtapas from '../data/etapas.json';
 import datosAliados from '../data/aliados.json';
+import proyecto from '../data/proyecto.json';
+
+const waLink = (texto: string) => `https://wa.me/${proyecto.whatsapp}?text=${encodeURIComponent(texto)}`;
+const waDevoto = waLink('Hola, quiero hacerme Devoto de Dulcinea y saber cómo puedo participar');
+const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo hacerme Escudero de Dulcinea');
 
 const ROM = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];
 const ESTADO_TXT = { publicado:'Capítulo ya escrito y publicado', actual:'Aquí se halla hoy Dulcinea', futuro:'Aún por escribir' };
@@ -93,7 +98,7 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
         title="El Toboso · Disponible — Ver Capítulo I"
       ></a>
     </div>
-    <p class="mapa-bloq-nota revela">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto">Unirse al viaje →</a></p>
+    <p class="mapa-bloq-nota revela">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto">Unirse al viaje →</a> · <a href={waDevoto} target="_blank" rel="noopener">Preguntar por WhatsApp</a></p>
   </div>
 </section>
 
@@ -119,7 +124,7 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
             <span class="dc-pct">{progresoPct}%</span>
           </div>
           <div class="dc-barra"><div class="dc-barra-inner" style={`width:${progresoPct}%`}></div></div>
-          <p class="dc-cta-texto">¿Quieres saber adónde va Dulcinea? <a href="/participar#devoto">Hazte Devoto →</a></p>
+          <p class="dc-cta-texto">¿Quieres saber adónde va Dulcinea? <a href="/participar#devoto">Hazte Devoto →</a> · <a href={waDevoto} target="_blank" rel="noopener">WhatsApp</a></p>
         </div>
       )}
     </div>
@@ -181,6 +186,11 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
         <div class="fundador-tagline">{f.tagline}</div>
         <div class="fundador-orn">✦</div>
         <p class="fundador-desc">{f.descripcion}</p>
+        {f.foto && (
+          <a class="fundador-foto" href={f.video?.youtube || '#'} target="_blank" rel="noopener" aria-label={`Dulcinea llega a ${f.nombre}`}>
+            <img src={f.foto} alt={`Dulcinea llegando a la puerta de ${f.nombre} en ${f.paradaVilla}`} />
+          </a>
+        )}
         {f.video?.youtubeId && (
           <div class="fundador-video revela">
             <a class="fundador-video-thumb" href={f.video.youtube} target="_blank" rel="noopener" aria-label="Ver en YouTube">
@@ -189,6 +199,9 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
                 alt={`Short de la visita de Dulcinea a ${f.paradaVilla}`}
                 onerror="this.src='https://img.youtube.com/vi/${f.video.youtubeId}/hqdefault.jpg'"
               />
+              {f.video.visualizaciones && (
+                <span class="fundador-video-proof">▶ {f.video.visualizaciones} visualizaciones</span>
+              )}
               <span class="fundador-play-btn">▶</span>
             </a>
             <div class="fundador-video-btns">
@@ -231,7 +244,11 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
     <div class="pregon revela" id="contacto">
       <h3>¿Queréis que Dulcinea llame a vuestra puerta?</h3>
       <p>Vuestro negocio puede formar parte del viaje: un vídeo protagonizado por Dulcinea, vuestro lugar en la Carta del Camino, materiales para las redes y un pergamino exclusivo que rece «Dulcinea estuvo aquí».</p>
-      <a class="boton-lacre" href="/participar#escudero">Hacerse escudero</a>
+      <p class="pregon-prueba">Como <strong>fisiohenares</strong>, nuestro primer Escudero: su vídeo ya supera las <strong>2.000 visualizaciones</strong>.</p>
+      <div class="pregon-botones">
+        <a class="boton-lacre" href="/participar#escudero">Hacerse escudero</a>
+        <a class="boton-perg" href={waEscudero} target="_blank" rel="noopener">🛡 Escribir por WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
