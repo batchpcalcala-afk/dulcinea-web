@@ -129,6 +129,32 @@ const progresoPct = siguienteUmbral > 0 ? Math.min(100, Math.round(devotosActual
       )}
     </div>
 
+    <!-- jornadas del Capítulo I — siempre visibles en la portada -->
+    <div class="cap1-jornadas revela">
+      <div class="cap1-cab">
+        <span class="sc" style="color:var(--lacre);letter-spacing:.25em;font-size:.85rem">Capítulo I — El Toboso</span>
+        <h3>Las jornadas de El Toboso</h3>
+        <p class="cap1-sub">Dulcinea sigue en El Toboso. Estas son las jornadas de su primer capítulo:</p>
+      </div>
+      <div class="cap1-lista">
+        {etapas[0].jornadas.map((j:any, ji:number) => (
+          <div class={`cap1-jornada ${j.url ? 'cap1-pub' : 'cap1-pend'}`}>
+            <span class="cap1-num">I.{ji+1}</span>
+            <span class="cap1-titulo">{j.titulo}</span>
+            <span class="cap1-enlaces">
+              {j.url
+                ? <>
+                    <a class="cap1-btn cap1-yt" href={j.url} target="_blank" rel="noopener">▶ YouTube</a>
+                    {j.instagram && <a class="cap1-btn cap1-ig" href={j.instagram} target="_blank" rel="noopener">◈ Instagram</a>}
+                  </>
+                : <span class="cap1-pronto">⏳ Próximamente</span>
+              }
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
     <div class="capitulos-grid">
       {etapas.map((e:any, i:number) => {
         const desbloqueado = devotosActuales >= e.devotosNecesarios;
