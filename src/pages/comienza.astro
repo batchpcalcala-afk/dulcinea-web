@@ -3,6 +3,10 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Colofon from '../components/Colofon.astro';
 import proyecto from '../data/proyecto.json';
+import datosEtapas from '../data/etapas.json';
+const etapas = datosEtapas.etapas;
+const iActual = Math.max(0, etapas.findIndex((e:any) => e.estado === 'actual'));
+const actual = etapas[iActual];
 
 const waLink = (texto: string) => `https://wa.me/${proyecto.whatsapp}?text=${encodeURIComponent(texto)}`;
 const waGeneral = waLink('Hola, acabo de descubrir El Viaje de Dulcinea y me gustaría más información sobre el proyecto');
@@ -98,6 +102,69 @@ const villas = [
     </div>
   </div>
 </section>
+
+<!-- ===== 3b. JORNADAS DEL TOBOSO ===== -->
+{actual && actual.jornadas && actual.jornadas.length > 0 && (
+<section class="jornadas-cap" id="jornadas">
+  <div class="contenedor">
+    <div class="jornadas-cab revela">
+      <span class="sc">Capítulo I · El Toboso</span>
+      <div class="jornadas-orn">❦</div>
+      <h2>Las Jornadas del Toboso</h2>
+      <p class="jornadas-intro">Cada jornada es un paso del viaje. Síguelas por orden o descúbrelas a tu ritmo.</p>
+    </div>
+    <div class="jornadas-lista">
+      {actual.jornadas.map((j: any, idx: number) => (
+        <article class="jornada-fila revela" style={`transition-delay:${idx * 0.14}s`}>
+          <a class="jornada-thumb" href={j.url} target="_blank" rel="noopener" aria-label={`Ver ${j.titulo} en YouTube`}>
+            <img
+              src={`https://img.youtube.com/vi/${j.youtubeId}/maxresdefault.jpg`}
+              alt={`Miniatura de la jornada: ${j.titulo}`}
+              loading="lazy"
+            />
+            <div class="jornada-play-ico">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="22" cy="22" r="21" fill="rgba(30,20,10,0.68)" stroke="#C8922A" stroke-width="1.5"/>
+                <polygon points="18,14 32,22 18,30" fill="#FBF3DC"/>
+              </svg>
+            </div>
+            <div class="jornada-thumb-sombra"></div>
+          </a>
+          <div class="jornada-info">
+            <div class="jornada-num-wrap">
+              <span class="jornada-num">Jornada {['I','II','III','IV','V','VI','VII','VIII','IX','X'][idx]}</span>
+            </div>
+            <h3 class="jornada-titulo">{j.titulo}</h3>
+            <div class="jornada-btns">
+              <a class="jornada-btn jornada-btn-yt" href={j.url} target="_blank" rel="noopener">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17.6 2.18A2.26 2.26 0 0 0 16.01.57C14.62.18 9 .18 9 .18S3.38.18 1.99.57A2.26 2.26 0 0 0 .4 2.18C0 3.6 0 6.5 0 6.5s0 2.9.4 4.32a2.26 2.26 0 0 0 1.59 1.61C3.38 12.82 9 12.82 9 12.82s5.62 0 7.01-.39a2.26 2.26 0 0 0 1.59-1.61C18 9.4 18 6.5 18 6.5s0-2.9-.4-4.32ZM7.14 9.21V3.79l4.68 2.71-4.68 2.71Z" fill="#FBF3DC"/>
+                </svg>
+                Ver en YouTube
+              </a>
+              {j.instagram && (
+                <a class="jornada-btn jornada-btn-ig" href={j.instagram} target="_blank" rel="noopener">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="1" y="1" width="14" height="14" rx="4" stroke="#F5EEFF" stroke-width="1.5" fill="none"/>
+                    <circle cx="8" cy="8" r="3.2" stroke="#F5EEFF" stroke-width="1.4" fill="none"/>
+                    <circle cx="11.8" cy="4.2" r="0.9" fill="#F5EEFF"/>
+                  </svg>
+                  Ver en Instagram
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="jornadas-pie revela">
+      <span class="sc">Más jornadas próximamente</span>
+      <div class="jornadas-orn">❧</div>
+      <p>Sigue a Dulcinea en <a href="https://www.youtube.com/@elviajededulcinea" target="_blank" rel="noopener">YouTube</a> e <a href="https://www.instagram.com/elviajededulcinea" target="_blank" rel="noopener">Instagram</a> para no perderte ninguna jornada.</p>
+    </div>
+  </div>
+</section>
+)}
 
 <!-- ===== 4. LAND-03 · EL CAMINO ===== -->
 <section class="ci-seccion ci-land03" id="camino-real">
@@ -199,39 +266,6 @@ const villas = [
       <a class="mapa-toboso-zona" href="#capitulo1" aria-label="El Toboso — Disponible"></a>
     </div>
     <p class="mapa-bloq-nota" style="color:#8A7055">❧ Hazte Devoto para saber adónde va Dulcinea — <a href="/participar#devoto" style="color:#C9A24B">Unirse al viaje →</a> · <a href={waDevoto} target="_blank" rel="noopener" style="color:#C9A24B">WhatsApp</a></p>
-  </div>
-</section>
-
-<!-- ===== 6. CAPÍTULO I ===== -->
-<section class="ci-seccion ci-oscuro" id="capitulo1">
-  <div class="ci-contenedor ci-centro">
-    <span class="ci-eyebrow">Capítulo I — El Toboso</span>
-    <h2 style="color:#E8D194">Las jornadas de El Toboso</h2>
-    <p class="ci-intro" style="color:#CBB88E">Dulcinea sigue en El Toboso. Estas son las jornadas de su primer capítulo:</p>
-    <div class="ci-jornadas revela">
-      <a class="ci-jornada ci-j-pub" href="https://www.youtube.com/watch?v=WI5WYOb5tao" target="_blank" rel="noopener">
-        <span class="ci-j-num">I.1</span>
-        <span class="ci-j-titulo">¿Dónde está Don Quijote?</span>
-        <span class="ci-j-links">
-          <span class="ci-j-yt">▶ YouTube</span>
-          <a class="ci-j-ig" href="https://www.instagram.com/elviajededulcinea/reel/DavbF8Lp7g9/" target="_blank" rel="noopener" onclick="event.stopPropagation()">◈ Instagram</a>
-        </span>
-      </a>
-      <a class="ci-jornada ci-j-pub" href="https://www.youtube.com/watch?v=TYM2j6gRpQI" target="_blank" rel="noopener">
-        <span class="ci-j-num">I.2</span>
-        <span class="ci-j-titulo">El Silencio del Caballero</span>
-        <span class="ci-j-links">
-          <span class="ci-j-yt">▶ YouTube</span>
-          <a class="ci-j-ig" href="https://www.instagram.com/p/DbJBXDkpfC4/" target="_blank" rel="noopener" onclick="event.stopPropagation()">◈ Instagram</a>
-        </span>
-      </a>
-      <div class="ci-jornada ci-j-pend">
-        <span class="ci-j-num">I.3</span>
-        <span class="ci-j-titulo">La voz que negó mi existencia</span>
-        <span class="ci-j-links"><span class="ci-j-pronto">⏳ Próximamente</span></span>
-      </div>
-    </div>
-    <a class="ci-btn ci-btn-borde-dorado" href="/#capitulos">Ver todos los capítulos →</a>
   </div>
 </section>
 
