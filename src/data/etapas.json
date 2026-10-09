@@ -4,25 +4,163 @@
   "_ayuda_devotos": "Pon aquí el número real de devotos registrados. El sistema calcula automáticamente qué capítulos están desbloqueados. A 100 devotos se revela el Cap. II, a 250 el III, etc.",
   "etapas": [
     {
-      "muni": "El Toboso", "ano": 1616, "estado": "actual", "pos": [86.8, 85.0],
+      "muni": "El Toboso",
+      "ano": 1616,
+      "estado": "actual",
+      "pos": [
+        86.8,
+        85.0
+      ],
       "devotosNecesarios": 0,
       "jornadas": [
-        { "titulo": "¿Dónde está Don Quijote?", "url": "https://www.youtube.com/watch?v=WI5WYOb5tao", "instagram": "https://www.instagram.com/elviajededulcinea/reel/DavbF8Lp7g9/" },
-        { "titulo": "El Silencio del Caballero", "url": "https://www.youtube.com/watch?v=TYM2j6gRpQI", "instagram": "https://www.instagram.com/p/DbJBXDkpfC4/" },
-        { "titulo": "La voz que negó mi existencia", "url": "", "instagram": "" }
+        {
+          "titulo": "¿Dónde está Don Quijote?",
+          "url": "https://www.youtube.com/watch?v=WI5WYOb5tao",
+          "instagram": "https://www.instagram.com/elviajededulcinea/reel/DavbF8Lp7g9/"
+        },
+        {
+          "titulo": "El Silencio del Caballero",
+          "url": "https://www.youtube.com/watch?v=TYM2j6gRpQI",
+          "instagram": "https://www.instagram.com/p/DbJBXDkpfC4/"
+        },
+        {
+          "titulo": "El nombre que no era mío",
+          "url": "https://www.youtube.com/watch?v=xoEXBSDNbQo",
+          "instagram": "https://www.instagram.com/p/Dcxs22Ipqke/"
+        }
       ],
       "txt": "Que trata de la noche en que las estrellas se movieron, y de la plática imposible que Dulcinea tuvo con Cervantes.",
       "pat": "Casa-Museo de Dulcinea · Museo Cervantino · punto de origen del viaje"
     },
-    { "muni": "Campo de Criptana", "ano": 1655, "estado": "futuro", "pos": [65.6, 86.8], "devotosNecesarios": 100, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Mota del Cuervo", "ano": 1690, "estado": "futuro", "pos": [50.2, 72.7], "devotosNecesarios": 250, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Alcázar de San Juan", "ano": 1725, "estado": "futuro", "pos": [39.5, 79.9], "devotosNecesarios": 500, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Argamasilla de Alba", "ano": 1760, "estado": "futuro", "pos": [23.0, 86.1], "devotosNecesarios": 1000, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Puerto Lápice", "ano": 1800, "estado": "futuro", "pos": [3.4, 77.4], "devotosNecesarios": 2000, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Consuegra", "ano": 1840, "estado": "futuro", "pos": [6.3, 63.9], "devotosNecesarios": 3500, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Toledo", "ano": 1885, "estado": "futuro", "pos": [8.5, 48.4], "devotosNecesarios": 5000, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Esquivias", "ano": 1930, "estado": "futuro", "pos": [34.3, 30.8], "devotosNecesarios": 7500, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Madrid", "ano": 1975, "estado": "futuro", "pos": [39.9, 16.5], "devotosNecesarios": 10000, "jornadas": [], "txt": "", "pat": "" },
-    { "muni": "Alcalá de Henares", "ano": 2026, "estado": "futuro", "pos": [61.6, 20.4], "devotosNecesarios": 15000, "jornadas": [], "txt": "", "pat": "" }
+    {
+      "muni": "Campo de Criptana",
+      "ano": 1655,
+      "estado": "futuro",
+      "pos": [
+        65.6,
+        86.8
+      ],
+      "devotosNecesarios": 100,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Mota del Cuervo",
+      "ano": 1690,
+      "estado": "futuro",
+      "pos": [
+        50.2,
+        72.7
+      ],
+      "devotosNecesarios": 250,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Alcázar de San Juan",
+      "ano": 1725,
+      "estado": "futuro",
+      "pos": [
+        39.5,
+        79.9
+      ],
+      "devotosNecesarios": 500,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Argamasilla de Alba",
+      "ano": 1760,
+      "estado": "futuro",
+      "pos": [
+        23.0,
+        86.1
+      ],
+      "devotosNecesarios": 1000,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Puerto Lápice",
+      "ano": 1800,
+      "estado": "futuro",
+      "pos": [
+        3.4,
+        77.4
+      ],
+      "devotosNecesarios": 2000,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Consuegra",
+      "ano": 1840,
+      "estado": "futuro",
+      "pos": [
+        6.3,
+        63.9
+      ],
+      "devotosNecesarios": 3500,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Toledo",
+      "ano": 1885,
+      "estado": "futuro",
+      "pos": [
+        8.5,
+        48.4
+      ],
+      "devotosNecesarios": 5000,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Esquivias",
+      "ano": 1930,
+      "estado": "futuro",
+      "pos": [
+        34.3,
+        30.8
+      ],
+      "devotosNecesarios": 7500,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Madrid",
+      "ano": 1975,
+      "estado": "futuro",
+      "pos": [
+        39.9,
+        16.5
+      ],
+      "devotosNecesarios": 10000,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    },
+    {
+      "muni": "Alcalá de Henares",
+      "ano": 2026,
+      "estado": "futuro",
+      "pos": [
+        61.6,
+        20.4
+      ],
+      "devotosNecesarios": 15000,
+      "jornadas": [],
+      "txt": "",
+      "pat": ""
+    }
   ]
 }
