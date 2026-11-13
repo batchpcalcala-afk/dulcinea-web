@@ -8,6 +8,28 @@ const {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Etiqueta de Google (Google Ads AW-347505670) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-347505670"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-347505670');
+  </script>
+
+  <!-- Conversión: clic en cualquier botón de WhatsApp -->
+  <script is:inline>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
+      if (!a) return;
+      gtag('event', 'conversion', {
+        'send_to': 'AW-347505670/rT-aCIDX27YdEIaI2qUB',
+        'value': 1.0,
+        'currency': 'EUR'
+      });
+    });
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
