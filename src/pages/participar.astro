@@ -7,6 +7,7 @@ import proyecto from '../data/proyecto.json';
 const waLink = (texto: string) => `https://wa.me/${proyecto.whatsapp}?text=${encodeURIComponent(texto)}`;
 const waDevoto = waLink('Hola, quiero hacerme Devoto de Dulcinea y saber cómo puedo participar');
 const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo hacerme Escudero de Dulcinea');
+const waColaborar = waLink('Hola, represento a una entidad y me interesa colaborar con El Viaje de Dulcinea');
 ---
 <Base
   title="Quiero participar — El Viaje de Dulcinea del Toboso"
@@ -14,270 +15,213 @@ const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo ha
 
 <Nav />
 
-<!-- ============ CABECERA ============ -->
-<header class="participar-cab">
+<!-- ============ HERO CON TARJETAS ============ -->
+<header class="part-hero">
   <div class="contenedor">
-    <span class="sc" style="color:var(--lacre);letter-spacing:.3em;font-size:.9rem">Pregón</span>
-    <h1>Quiero participar</h1>
-    <p class="lema">Tres maneras hay de acompañar a Dulcinea en su viaje:<br />siendo devoto de su historia, socorriéndola como escudero,<br />o aliándose con su causa.</p>
+    <p class="part-eyebrow sc">El Viaje de Dulcinea · Participa</p>
+    <h1 class="part-h1">Elige cómo acompañar<br/>a Dulcinea</h1>
+    <p class="part-sub">Forma parte de la comunidad, incorpora tu negocio a la ruta<br/>o propón una colaboración cultural.</p>
+  </div>
+
+  <!-- Tarjetas de selección -->
+  <div class="contenedor part-cards-wrap">
+    <div class="part-cards">
+
+      <a class="part-card revela" href="#devoto">
+        <div class="part-card-img part-card-img-devoto">
+          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="10" y="8" width="44" height="34" rx="3" fill="#c9a0a8" opacity=".4"/>
+            <rect x="14" y="12" width="44" height="34" rx="3" fill="#b06070" opacity=".5"/>
+            <line x1="36" y1="12" x2="29" y2="29" stroke="#7E241B" stroke-width="1.5"/>
+            <line x1="36" y1="12" x2="43" y2="29" stroke="#7E241B" stroke-width="1.5"/>
+            <circle cx="36" cy="30" r="4" fill="#7E241B" opacity=".8"/>
+            <line x1="20" y1="34" x2="52" y2="34" stroke="#7E241B" stroke-width="1" opacity=".4"/>
+            <text x="22" y="42" font-size="8" fill="#7E241B" opacity=".5" font-family="serif">✦ ✦ ✦</text>
+          </svg>
+        </div>
+        <p class="part-card-label sc">I · Para quienes siguen<br/>la historia</p>
+        <h2 class="part-card-h">Hacerse Devoto</h2>
+        <p class="part-card-desc">Entra en la comunidad que acompaña a Dulcinea y recibe su Carta de Acogida.</p>
+        <span class="part-card-cta">Quiero ser Devoto ↓</span>
+      </a>
+
+      <a class="part-card revela" href="#escudero" style="transition-delay:.1s">
+        <div class="part-card-img part-card-img-escudero">
+          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="22" y="20" width="36" height="28" fill="#8fa88a" opacity=".4"/>
+            <rect x="26" y="16" width="28" height="8" fill="#8fa88a" opacity=".5"/>
+            <rect x="30" y="32" width="8" height="16" fill="#5a7a55" opacity=".6"/>
+            <rect x="42" y="34" width="10" height="10" fill="#5a7a55" opacity=".5"/>
+            <line x1="22" y1="20" x2="58" y2="20" stroke="#5a7a55" stroke-width="1.5"/>
+            <line x1="14" y1="20" x2="22" y2="12" stroke="#5a7a55" stroke-width="1.5"/>
+            <line x1="66" y1="20" x2="58" y2="12" stroke="#5a7a55" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <p class="part-card-label sc">II · Para comercios y<br/>negocios</p>
+        <h2 class="part-card-h">Hacerse Escudero</h2>
+        <p class="part-card-desc">Cuéntanos la historia de tu establecimiento y descubre cómo puede formar parte del camino.</p>
+        <span class="part-card-cta part-card-cta-verde">Quiero ser Escudero ↓</span>
+      </a>
+
+      <a class="part-card revela" href="#colaborar" style="transition-delay:.2s">
+        <div class="part-card-img part-card-img-colaborar">
+          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="12" y="14" width="38" height="28" rx="1" fill="#7a9ab0" opacity=".3"/>
+            <line x1="20" y1="22" x2="42" y2="22" stroke="#2B4A6A" stroke-width="1" opacity=".5"/>
+            <line x1="20" y1="27" x2="38" y2="27" stroke="#2B4A6A" stroke-width="1" opacity=".4"/>
+            <line x1="20" y1="32" x2="34" y2="32" stroke="#2B4A6A" stroke-width="1" opacity=".3"/>
+            <circle cx="52" cy="20" r="8" fill="#7a9ab0" opacity=".4" stroke="#2B4A6A" stroke-width="1"/>
+            <line x1="48" y1="20" x2="56" y2="20" stroke="#2B4A6A" stroke-width="1.2"/>
+            <line x1="52" y1="16" x2="52" y2="24" stroke="#2B4A6A" stroke-width="1.2"/>
+            <path d="M44 36 Q52 28 60 32" stroke="#2B4A6A" stroke-width="1" fill="none" opacity=".5"/>
+          </svg>
+        </div>
+        <p class="part-card-label sc">III · Para entidades y<br/>profesionales</p>
+        <h2 class="part-card-h">Colaborar con el Viaje</h2>
+        <p class="part-card-desc">Propón una actividad, comparte una investigación o ayúdanos a dar a conocer el patrimonio cervantino.</p>
+        <span class="part-card-cta part-card-cta-azul">Proponer una colaboración ↓</span>
+      </a>
+
+    </div>
   </div>
 </header>
 
-<section class="participar-vias">
-  <div class="contenedor vias-grid">
+<!-- ============ SECCIONES DETALLE ============ -->
+<main class="part-secciones">
 
-    <!-- ============ DEVOTOS ============ -->
-    <article class="via revela" id="devoto">
-      <span class="via-num">I</span>
-      <h2>Hacerse Devoto</h2>
-      <div class="via-lema">«Si soy una invención, ¿por qué siento, por qué amo, por qué sufro?»</div>
-      <p>Dulcinea existe porque alguien la mira. Sin miradas, sin corazones que la sigan, ella sería solo tinta sobre papel, un nombre repetido en un libro viejo. Pero vos podéis cambiar eso.</p>
-      <p>Ser <b>Devoto de Dulcinea</b> no es simplemente seguir una cuenta: es sostener su existencia con cada comentario, cada visita, cada momento que le dedicáis. Cada Devoto que la ve, que la comenta, que camina hasta uno de sus Escuderos y prueba que su viaje es real, la hace un poco más real también. Y ella, a su manera, también os ve a vos.</p>
-      <div class="via-botones">
-        <a class="btn btn-lacre" href={proyecto.youtube} target="_blank" rel="noopener">▶ @elviajededulcinea en YouTube</a>
-        <a class="btn btn-perg" href={proyecto.instagram} target="_blank" rel="noopener">@elviajededulcinea en Instagram</a>
-      </div>
+  <!-- ── I DEVOTOS ── -->
+  <section class="part-sec revela" id="devoto">
+    <div class="contenedor part-sec-inner">
 
-      <h3 class="via-sub">El registro de los Devotos</h3>
-      <p>Inscribíos y recibiréis las nuevas del viaje. Y si nos dejáis vuestros nombres de usuario, vuestra participación no quedará en silencio: cada jornada que veáis, cada «me gusta», cada visita a nuestros Escuderos — <b>suma puntos</b>. Los puntos se convierten en <b>insignias</b>, y cada insignia es una puerta.</p>
-
-      <!-- Insignias -->
-      <div class="insignias-grid">
-        <div class="insignia-card">
-          <span class="insignia-icono">📜</span>
-          <b>Capítulos secretos</b>
-          <span>Escenas que Cervantes nunca escribió, solo para Devotos fieles.</span>
-        </div>
-        <div class="insignia-card">
-          <span class="insignia-icono">🗺️</span>
-          <b>Tratos en el camino</b>
-          <span>Ventajas especiales en los comercios Escuderos de las villas.</span>
-        </div>
-        <div class="insignia-card">
-          <span class="insignia-icono">🕯️</span>
-          <b>Conocer a Dulcinea</b>
-          <span>Acceso directo a momentos que nadie más ve.</span>
+      <div class="part-sec-texto">
+        <p class="part-sec-label sc">I · Comunidad</p>
+        <h2 class="part-sec-h">Hacerse Devoto</h2>
+        <blockquote class="part-cita">«Un seguidor observa el camino;<br/>un Devoto decide recorrerlo contigo.»</blockquote>
+        <p>Si sigues mis pasos, me hará ilusión saber quién camina conmigo.</p>
+        <ul class="part-pasos">
+          <li>Indica tu nombre, correo y usuario de Instagram o YouTube.</li>
+          <li>Envía la solicitud desde tu correo.</li>
+          <li>Cuando se confirme tu incorporación, recibirás la Carta de Acogida en PDF.</li>
+        </ul>
+        <div class="part-sec-links">
+          <a href={proyecto.youtube} target="_blank" rel="noopener" class="part-enlace">▶ YouTube</a>
+          <a href={proyecto.instagram} target="_blank" rel="noopener" class="part-enlace">Instagram</a>
         </div>
       </div>
 
-      <!-- Separador ornamental -->
-      <div class="devoto-separador">✦ ✦ ✦</div>
-
-      <p class="devoto-llamada"><i>Dulcinea necesita devotos para ser real.<br/>Vos necesitáis creer para descubrir hasta dónde llega su historia.</i></p>
-
-      <form id="forma-devoto" class="forma-1616 forma-devoto-destacada">
-        <div class="devoto-correo-principal">
-          <label class="label-correo-grande">
-            Vuestro correo electrónico
-            <input type="email" name="correo" required placeholder="para recibir las nuevas del viaje" class="input-correo-grande" />
-          </label>
-          <button class="btn btn-lacre btn-devoto-cta" type="submit">🪶 Inscribirse como Devoto</button>
+      <div class="part-sec-forma">
+        <div class="forma-tarjeta">
+          <h3 class="forma-tarjeta-h">Solicita tu incorporación</h3>
+          <form id="forma-devoto" autocomplete="off">
+            <div class="ft-campos">
+              <label class="ft-label">Nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
+              <label class="ft-label">Correo electrónico<input type="email" name="correo" required placeholder="tu@correo.es" /></label>
+              <label class="ft-label">Red social
+                <select name="red">
+                  <option value="">Selecciona una</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="Ambas">Ambas</option>
+                </select>
+              </label>
+              <label class="ft-label">Usuario<input type="text" name="usuario" placeholder="@tuusuario" /></label>
+            </div>
+            <button class="ft-btn ft-btn-lacre" type="submit">Abrir solicitud en mi correo</button>
+            <p class="ft-nota">Se abrirá un borrador con tus datos. Revísalo y pulsa Enviar para completar la solicitud.</p>
+            <a href={waDevoto} class="ft-wa" target="_blank" rel="noopener">También puedes consultar por WhatsApp.</a>
+          </form>
         </div>
-        <details class="devoto-opcionales">
-          <summary>Añadir nombre de usuario <small>(voluntario, para las insignias)</small></summary>
-          <div class="campos campos-opcionales">
-            <label>Vuestro nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
-            <label>Usuario de YouTube<input type="text" name="youtube" placeholder="@vuestrousuario" /></label>
-            <label>Usuario de Instagram<input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
-          </div>
-        </details>
-        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje; lo único público será vuestro seudónimo. Si lo preferís, escribidnos por <a href={waDevoto} target="_blank" rel="noopener">WhatsApp</a>.</p>
-      </form>
-    </article>
+      </div>
 
-    <style>
-      /* ── Insignias ── */
-      .insignias-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin: 1.6rem 0 0.5rem;
-      }
-      @media (max-width: 640px) {
-        .insignias-grid { grid-template-columns: 1fr; }
-      }
-      .insignia-card {
-        background: var(--pergamino-claro);
-        border: 1px solid var(--oro);
-        padding: 1.1rem 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        text-align: center;
-      }
-      .insignia-icono {
-        font-size: 1.7rem;
-        line-height: 1;
-        margin-bottom: 0.2rem;
-      }
-      .insignia-card b {
-        font-family: 'IM Fell English SC', serif;
-        font-weight: 400;
-        font-size: 0.95rem;
-        color: var(--lacre);
-        letter-spacing: 0.04em;
-      }
-      .insignia-card span {
-        font-size: 0.88rem;
-        color: var(--tinta-suave);
-        line-height: 1.4;
-      }
+    </div>
+  </section>
 
-      /* ── Separador y llamada ── */
-      .devoto-separador {
-        text-align: center;
-        color: var(--oro);
-        letter-spacing: 0.9rem;
-        font-size: 0.8rem;
-        margin: 1.8rem 0 1.2rem;
-        opacity: 0.7;
-      }
-      .devoto-llamada {
-        text-align: center;
-        font-size: 1.05rem;
-        line-height: 1.7;
-        color: var(--tinta-suave);
-        margin-bottom: 1.6rem;
-      }
+  <div class="part-sep"><span class="sc" style="letter-spacing:.3em;font-size:.75rem;color:var(--oro);opacity:.6">✦</span></div>
 
-      /* ── Formulario destacado ── */
-      .forma-devoto-destacada {
-        background: var(--pergamino-claro);
-        border: 1.5px solid var(--oro);
-        outline: 1px solid rgba(150,116,31,0.25);
-        outline-offset: 4px;
-        padding: 1.8rem;
-      }
-      .devoto-correo-principal {
-        display: flex;
-        gap: 0.8rem;
-        align-items: flex-end;
-        flex-wrap: wrap;
-      }
-      .label-correo-grande {
-        flex: 1 1 240px;
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        font-family: 'IM Fell English SC', serif;
-        font-size: 0.9rem;
-        letter-spacing: 0.04em;
-        color: var(--tinta-suave);
-      }
-      .input-correo-grande {
-        font-size: 1rem;
-        padding: 0.65rem 0.8rem;
-        border: 1.5px solid var(--tinta-suave);
-        background: var(--pergamino);
-        color: var(--tinta);
-        font-family: 'EB Garamond', serif;
-        width: 100%;
-      }
-      .input-correo-grande:focus {
-        outline: 2px solid var(--lacre);
-        outline-offset: 2px;
-        border-color: var(--lacre);
-      }
-      .btn-devoto-cta {
-        flex-shrink: 0;
-        font-size: 1rem;
-        padding: 0.65rem 1.4rem;
-        white-space: nowrap;
-      }
+  <!-- ── II ESCUDEROS ── -->
+  <section class="part-sec revela" id="escudero" style="transition-delay:.1s">
+    <div class="contenedor part-sec-inner">
 
-      /* ── Opcionales desplegables ── */
-      .devoto-opcionales {
-        margin-top: 1rem;
-      }
-      .devoto-opcionales summary {
-        font-family: 'IM Fell English SC', serif;
-        font-size: 0.85rem;
-        letter-spacing: 0.04em;
-        color: var(--tinta-suave);
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .devoto-opcionales summary::before {
-        content: '▸';
-        color: var(--oro);
-        transition: transform 0.2s;
-      }
-      .devoto-opcionales[open] summary::before {
-        transform: rotate(90deg);
-      }
-      .devoto-opcionales summary small {
-        font-family: 'EB Garamond', serif;
-        font-size: 0.8rem;
-        opacity: 0.7;
-      }
-      .campos-opcionales {
-        margin-top: 0.8rem;
-        padding-top: 0.8rem;
-        border-top: 1px solid rgba(150,116,31,0.3);
-      }
-    </style>
+      <div class="part-sec-texto">
+        <p class="part-sec-label sc part-sec-label-verde">II · Negocios del camino</p>
+        <h2 class="part-sec-h">Hacerse Escudero</h2>
+        <p>Tu negocio puede convertirse en una parada del Viaje. Queremos conocer el lugar, a las personas que le dan vida y la historia que merece ser contada.</p>
+        <ul class="part-pasos part-pasos-verde">
+          <li>Un vídeo que cuente la historia de tu establecimiento.</li>
+          <li>Presencia en la web y en la ruta del Viaje.</li>
+          <li>Materiales para compartir el paso de Dulcinea por tu negocio.</li>
+        </ul>
+        <a href={`/escuderos`} class="part-enlace-dest">Conoce a los Escuderos del Viaje</a>
+      </div>
 
-    <!-- ============ ESCUDEROS ============ -->
-    <article class="via via-oscura revela" id="escudero" style="transition-delay:.15s">
-      <span class="via-num">II</span>
-      <h2>Hacerse Escudero</h2>
-      <div class="via-lema">«Todo caballero necesita quien le socorra en el camino.»</div>
-      <p>Los <b>Escuderos de Dulcinea</b> son los comercios y negocios que la ayudan a continuar su viaje. No son anuncios: son parte de la historia. Cada escudero recibe:</p>
-      <ul class="via-lista">
-        <li>Una <b>jornada en vídeo</b> protagonizada por Dulcinea en vuestro establecimiento.</li>
-        <li>Vuestro lugar en el <b>mapa oficial del viaje</b> y presencia permanente en esta web.</li>
-        <li>Material para redes sociales y un <b>pergamino exclusivo</b> «Dulcinea estuvo aquí».</li>
-        <li>La difusión ante los Devotos que siguen el camino.</li>
-      </ul>
-
-      <form id="forma-escudero" class="forma-1616">
-        <div class="campos">
-          <label>Nombre del negocio<input type="text" name="negocio" required placeholder="p. ej. Panadería La Espiga" /></label>
-          <label>Villa<input type="text" name="villa" required placeholder="p. ej. Campo de Criptana" /></label>
-          <label>Oficio<input type="text" name="oficio" placeholder="p. ej. Horno y pan" /></label>
-          <label>Persona de contacto<input type="text" name="persona" required /></label>
-          <label>Correo o teléfono<input type="text" name="contacto" required /></label>
+      <div class="part-sec-forma">
+        <div class="forma-tarjeta">
+          <h3 class="forma-tarjeta-h">Cuéntanos sobre tu negocio</h3>
+          <form id="forma-escudero" autocomplete="off">
+            <div class="ft-campos">
+              <label class="ft-label">Nombre del negocio<input type="text" name="negocio" required placeholder="p. ej. Panadería La Espiga" /></label>
+              <label class="ft-label">Localidad<input type="text" name="villa" required placeholder="p. ej. Campo de Criptana" /></label>
+              <label class="ft-label">Persona de contacto<input type="text" name="persona" required /></label>
+              <label class="ft-label">Correo electrónico<input type="email" name="contacto" required placeholder="tu@correo.es" /></label>
+            </div>
+            <label class="ft-label ft-label-full">¿Qué hace especial a tu negocio?<textarea name="mensaje" rows="3" placeholder="Qué hacéis, desde cuándo, por qué queréis acompañar a Dulcinea…"></textarea></label>
+            <button class="ft-btn ft-btn-verde" type="submit">Abrir consulta en mi correo</button>
+            <p class="ft-nota">Se abrirá un borrador. Envíalo para que podamos contactarte y hablar de las opciones.</p>
+            <a href={waEscudero} class="ft-wa" target="_blank" rel="noopener">También puedes consultar por WhatsApp.</a>
+          </form>
         </div>
-        <label>Contadnos de vuestro negocio<textarea name="mensaje" rows="4" placeholder="Qué hacéis, desde cuándo, y por qué queréis acompañar a Dulcinea…"></textarea></label>
-        <button class="btn btn-lacre" type="submit">🪶 Enviar la solicitud</button>
-        <p class="forma-nota">La solicitud se abre en vuestro correo, lista para enviar. Si lo preferís, escribidnos directamente a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a> o por <a href={waEscudero} target="_blank" rel="noopener">WhatsApp</a></p>
-      </form>
-    </article>
+      </div>
 
+    </div>
+  </section>
 
-    <!-- ============ COLABORAR ============ -->
-    <article class="via via-ancha revela" id="colaborar" style="transition-delay:.25s">
-      <span class="via-num">III</span>
-      <h2>Colaborar con el viaje</h2>
-      <div class="via-lema">«Las grandes empresas no se hacen en soledad.»</div>
-      <p>Si representáis a una <b>asociación cervantina o cultural</b>, una <b>oficina de turismo o ayuntamiento</b> de las villas del camino, un <b>medio de comunicación</b> o un <b>centro educativo</b>, el viaje de Dulcinea está abierto a alianzas: rutas, actos, contenidos conjuntos y difusión del patrimonio.</p>
+  <div class="part-sep"><span class="sc" style="letter-spacing:.3em;font-size:.75rem;color:var(--oro);opacity:.6">✦</span></div>
 
-      <form id="forma-colaborar" class="forma-1616 forma-clara">
-        <div class="campos">
-          <label>Entidad u organización<input type="text" name="entidad" required placeholder="p. ej. Sociedad Cervantina de Alcázar" /></label>
-          <label>A qué va dirigido
-            <select name="tipo" required>
-              <option value="Asociación cervantina o cultural">Asociación cervantina o cultural</option>
-              <option value="Turismo o ayuntamiento">Turismo o ayuntamiento</option>
-              <option value="Medio de comunicación">Medio de comunicación</option>
-              <option value="Centro educativo">Centro educativo</option>
-              <option value="Otra colaboración">Otra colaboración</option>
-            </select>
-          </label>
-          <label>Persona de contacto<input type="text" name="persona" required /></label>
-          <label>Correo o teléfono<input type="text" name="contacto" required /></label>
+  <!-- ── III COLABORAR ── -->
+  <section class="part-sec revela" id="colaborar" style="transition-delay:.2s">
+    <div class="contenedor part-sec-inner">
+
+      <div class="part-sec-texto">
+        <p class="part-sec-label sc part-sec-label-azul">III · Cultura, turismo y patrimonio</p>
+        <h2 class="part-sec-h">Colaborar con el Viaje</h2>
+        <p>Si trabajas en turismo, cultura, educación o comunicación, o investigas la historia de alguno de los pueblos de la ruta, cuéntanos qué podríamos hacer juntos.</p>
+        <ul class="part-pasos part-pasos-azul">
+          <li>Organizar rutas, presentaciones o actividades culturales.</li>
+          <li>Documentar lugares, tradiciones e historias poco conocidas.</li>
+          <li>Crear contenidos para centros educativos, medios o entidades.</li>
+        </ul>
+      </div>
+
+      <div class="part-sec-forma">
+        <div class="forma-tarjeta">
+          <h3 class="forma-tarjeta-h">Presenta tu propuesta</h3>
+          <form id="forma-colaborar" autocomplete="off">
+            <div class="ft-campos">
+              <label class="ft-label">Nombre o entidad<input type="text" name="entidad" required placeholder="p. ej. Soc. Cervantina de Alcázar" /></label>
+              <label class="ft-label">Ámbito
+                <select name="tipo" required>
+                  <option value="">Selecciona uno</option>
+                  <option value="Asociación cervantina o cultural">Asociación cervantina o cultural</option>
+                  <option value="Turismo o ayuntamiento">Turismo o ayuntamiento</option>
+                  <option value="Medio de comunicación">Medio de comunicación</option>
+                  <option value="Centro educativo">Centro educativo</option>
+                  <option value="Otra colaboración">Otra colaboración</option>
+                </select>
+              </label>
+              <label class="ft-label ft-label-full">Correo electrónico<input type="email" name="contacto" required placeholder="tu@correo.es" /></label>
+            </div>
+            <label class="ft-label ft-label-full">¿Qué te gustaría proponer?<textarea name="mensaje" rows="3" placeholder="Contadnos qué alianza imagináis con el viaje de Dulcinea…"></textarea></label>
+            <button class="ft-btn ft-btn-azul" type="submit">Abrir propuesta en mi correo</button>
+            <p class="ft-nota">Se abrirá un borrador. Envíalo para que podamos valorar la propuesta.</p>
+            <a href={`mailto:${proyecto.email}`} class="ft-wa">Escribir directamente por correo.</a>
+          </form>
         </div>
-        <label>Vuestra propuesta<textarea name="mensaje" rows="4" placeholder="Contadnos qué alianza imagináis con el viaje de Dulcinea…"></textarea></label>
-        <button class="btn btn-lacre" type="submit">🪶 Proponer la alianza</button>
-        <p class="forma-nota">La propuesta se abre en vuestro correo, lista para enviar, con el asunto indicando a qué va dirigida. Si lo preferís, escribidnos a <a href={`mailto:${proyecto.email}`}>{proyecto.email}</a></p>
-      </form>
-    </article>
+      </div>
 
-  </div>
-</section>
+    </div>
+  </section>
+
+</main>
 
 <Colofon />
 
@@ -286,36 +230,37 @@ const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo ha
   /* revelado por scroll */
   const obs = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-  }), { threshold: 0.1 });
+  }), { threshold: 0.08 });
   document.querySelectorAll('.revela').forEach((el) => obs.observe(el));
 
   /* la solicitud compone un correo listo para enviar */
   const proyecto = JSON.parse(document.getElementById('datos-proyecto').textContent);
+
+  document.getElementById('forma-devoto').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const f = new FormData(ev.target);
+    const nombre = f.get('nombre') || f.get('correo');
+    const asunto = `Nuevo Devoto de Dulcinea — ${nombre}`;
+    const cuerpo = [
+      `Nombre: ${f.get('nombre') || '-'}`,
+      `Correo: ${f.get('correo')}`,
+      `Red social: ${f.get('red') || '-'}`,
+      `Usuario: ${f.get('usuario') || '-'}`,
+    ].join('\n');
+    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  });
+
   document.getElementById('forma-escudero').addEventListener('submit', (ev) => {
     ev.preventDefault();
     const f = new FormData(ev.target);
     const asunto = `Quiero ser Escudero de Dulcinea — ${f.get('negocio')}`;
     const cuerpo = [
       `Negocio: ${f.get('negocio')}`,
-      `Villa: ${f.get('villa')}`,
-      `Oficio: ${f.get('oficio') || '-'}`,
+      `Localidad: ${f.get('villa')}`,
       `Persona de contacto: ${f.get('persona')}`,
-      `Correo o teléfono: ${f.get('contacto')}`,
+      `Correo: ${f.get('contacto')}`,
       '',
       f.get('mensaje') || '',
-    ].join('\n');
-    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-  });
-
-  document.getElementById('forma-devoto').addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const f = new FormData(ev.target);
-    const asunto = `Nuevo Devoto de Dulcinea — ${f.get('nombre') || f.get('correo')}`;
-    const cuerpo = [
-      `Nombre: ${f.get('nombre') || '-'}`,
-      `Correo: ${f.get('correo')}`,
-      `Usuario de YouTube: ${f.get('youtube') || '-'}`,
-      `Usuario de Instagram: ${f.get('instagram') || '-'}`,
     ].join('\n');
     location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
   });
@@ -326,14 +271,306 @@ const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo ha
     const asunto = `Colaboración · ${f.get('tipo')} — ${f.get('entidad')}`;
     const cuerpo = [
       `Entidad: ${f.get('entidad')}`,
-      `Dirigido a: ${f.get('tipo')}`,
-      `Persona de contacto: ${f.get('persona')}`,
-      `Correo o teléfono: ${f.get('contacto')}`,
+      `Ámbito: ${f.get('tipo')}`,
+      `Correo: ${f.get('contacto')}`,
       '',
       f.get('mensaje') || '',
     ].join('\n');
     location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
   });
 </script>
+
+<style>
+/* ══ HERO ══ */
+.part-hero {
+  background: var(--noche);
+  color: var(--estrella);
+  padding: 4rem 0 0;
+  overflow: hidden;
+}
+.part-eyebrow {
+  font-size: .8rem;
+  letter-spacing: .25em;
+  color: var(--lacre);
+  margin-bottom: .8rem;
+}
+.part-h1 {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--estrella);
+  margin-bottom: 1rem;
+}
+.part-sub {
+  font-size: 1rem;
+  color: var(--estrella);
+  opacity: .75;
+  line-height: 1.6;
+  max-width: 50ch;
+}
+
+/* ── Tarjetas de selección ── */
+.part-cards-wrap {
+  margin-top: 2.5rem;
+}
+.part-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .part-cards { grid-template-columns: 1fr; }
+}
+.part-card {
+  background: var(--pergamino-claro);
+  color: var(--tinta);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 1.3rem 1.6rem;
+  border-top: 3px solid var(--lacre);
+  transition: transform .2s, box-shadow .2s;
+}
+.part-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+.part-card-img {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.part-card-img-devoto  { background: #f0dde0; }
+.part-card-img-escudero { background: #ddecd8; border-top-color: #4a7a44; }
+.part-card-img-colaborar { background: #d8e6f0; border-top-color: #2B4A6A; }
+.part-card-img svg { width: 70px; height: 52px; }
+.part-card-label {
+  font-size: .72rem;
+  letter-spacing: .18em;
+  color: var(--lacre);
+  margin-bottom: .4rem;
+  line-height: 1.4;
+}
+.part-card:nth-child(2) .part-card-label { color: #4a7a44; }
+.part-card:nth-child(3) .part-card-label { color: #2B4A6A; }
+.part-card-h {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-bottom: .5rem;
+  color: var(--tinta);
+}
+.part-card-desc {
+  font-size: .88rem;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+  flex: 1;
+  margin-bottom: 1.2rem;
+}
+.part-card-cta {
+  display: inline-block;
+  background: var(--lacre);
+  color: var(--estrella);
+  font-family: 'IM Fell English SC', serif;
+  font-size: .82rem;
+  letter-spacing: .06em;
+  padding: .55rem 1rem;
+  text-align: center;
+}
+.part-card-cta-verde { background: #3a6435; }
+.part-card-cta-azul  { background: #1e3a5a; }
+
+/* ══ SECCIONES DETALLE ══ */
+.part-secciones {
+  background: var(--pergamino);
+}
+.part-sec {
+  padding: 4rem 0;
+}
+.part-sec-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .part-sec-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+.part-sec-label {
+  font-size: .75rem;
+  letter-spacing: .2em;
+  color: var(--lacre);
+  margin-bottom: .5rem;
+}
+.part-sec-label-verde { color: #3a6435; }
+.part-sec-label-azul  { color: #1e3a5a; }
+.part-sec-h {
+  font-family: 'IM Fell English', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--tinta);
+  margin-bottom: .9rem;
+}
+.part-cita {
+  border-left: 3px solid var(--lacre);
+  padding-left: .9rem;
+  font-style: italic;
+  color: var(--tinta-suave);
+  margin: 1rem 0 1rem;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+.part-pasos {
+  list-style: none;
+  margin: 1rem 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.part-pasos li {
+  padding-left: 1.1rem;
+  position: relative;
+  font-size: .95rem;
+  color: var(--lacre);
+  line-height: 1.5;
+}
+.part-pasos li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--lacre);
+  font-size: .8rem;
+}
+.part-pasos-verde li,
+.part-pasos-verde li::before { color: #3a6435; }
+.part-pasos-azul li,
+.part-pasos-azul li::before  { color: #1e3a5a; }
+
+.part-sec-links {
+  display: flex;
+  gap: .8rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+.part-enlace {
+  font-family: 'IM Fell English SC', serif;
+  font-size: .85rem;
+  color: var(--lacre);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.part-enlace-dest {
+  display: inline-block;
+  font-family: 'IM Fell English SC', serif;
+  font-size: .9rem;
+  font-weight: 400;
+  color: #3a6435;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: .4rem;
+}
+
+/* ── Tarjeta formulario ── */
+.forma-tarjeta {
+  background: var(--pergamino-claro);
+  border: 1px solid rgba(150,116,31,.4);
+  padding: 1.8rem;
+}
+.forma-tarjeta-h {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--tinta);
+  margin-bottom: 1.2rem;
+}
+.ft-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .7rem .9rem;
+  margin-bottom: .7rem;
+}
+.ft-label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .82rem;
+  color: var(--tinta-suave);
+  font-family: 'IM Fell English SC', serif;
+  letter-spacing: .03em;
+}
+.ft-label-full {
+  grid-column: 1 / -1;
+}
+.ft-label input,
+.ft-label select,
+.ft-label textarea {
+  font-family: 'EB Garamond', serif;
+  font-size: .95rem;
+  padding: .45rem .6rem;
+  border: 1px solid rgba(43,33,21,.3);
+  background: var(--pergamino);
+  color: var(--tinta);
+  width: 100%;
+  resize: vertical;
+}
+.ft-label input:focus,
+.ft-label select:focus,
+.ft-label textarea:focus {
+  outline: 2px solid var(--lacre);
+  outline-offset: 1px;
+  border-color: var(--lacre);
+}
+.ft-btn {
+  display: block;
+  width: 100%;
+  padding: .7rem 1rem;
+  margin: 1rem 0 .6rem;
+  font-family: 'IM Fell English SC', serif;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  color: var(--estrella);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.ft-btn-lacre { background: var(--lacre); }
+.ft-btn-lacre:hover { background: #6a1c14; }
+.ft-btn-verde { background: #3a6435; }
+.ft-btn-verde:hover { background: #2d4f28; }
+.ft-btn-azul  { background: #1e3a5a; }
+.ft-btn-azul:hover  { background: #152b44; }
+.ft-nota {
+  font-size: .78rem;
+  color: var(--tinta-suave);
+  opacity: .8;
+  line-height: 1.4;
+  margin-bottom: .4rem;
+}
+.ft-wa {
+  display: inline-block;
+  font-family: 'IM Fell English SC', serif;
+  font-size: .82rem;
+  color: var(--lacre);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Separador entre secciones */
+.part-sep {
+  text-align: center;
+  padding: .5rem 0;
+  border-top: 1px solid rgba(150,116,31,.2);
+  border-bottom: 1px solid rgba(150,116,31,.2);
+  background: var(--pergamino-osc);
+}
+
+/* contenedor heredado */
+.contenedor { max-width: 1060px; margin: 0 auto; padding: 0 1.4rem; }
+</style>
 
 </Base>
