@@ -39,26 +39,186 @@ const waEscudero = waLink('Hola, tengo un negocio y me interesa conocer cómo ha
       </div>
 
       <h3 class="via-sub">El registro de los Devotos</h3>
-      <p>Cuanto más crece vuestra devoción, más se abre ante vos el viaje. Hay capítulos que aún no han sido contados, momentos que Cervantes nunca escribió, escenas que solo los Devotos más fieles llegan a presenciar antes que nadie. Inscribíos y recibiréis las nuevas del viaje: cada jornada que se escriba, los lugares que merecen conocerse, los nuevos Escuderos del camino… y mucho más.</p>
-      <p>Y si nos dejáis vuestros nombres de usuario (cosa voluntaria), vuestra participación no quedará en silencio: cada jornada que veáis, cada «me gusta», cada comentario, cada vez que compartáis la historia — e incluso cada visita a nuestros Escuderos — <b>suma puntos</b>. Los puntos se convierten en <b>insignias</b>, y cada insignia es una puerta:</p>
-      <ul class="via-lista">
-        <li>Contenidos que nadie más ve y adelantos de su historia.</li>
-        <li>Tratos y ventajas especiales en los comercios Escuderos del camino.</li>
-        <li>Conocer mejor a Dulcinea… y mucho más.</li>
-      </ul>
-      <p><i>Dulcinea necesita devotos para ser real. Vos necesitáis creer para descubrir hasta dónde llega su historia. El trato es justo.</i></p>
+      <p>Inscribíos y recibiréis las nuevas del viaje. Y si nos dejáis vuestros nombres de usuario, vuestra participación no quedará en silencio: cada jornada que veáis, cada «me gusta», cada visita a nuestros Escuderos — <b>suma puntos</b>. Los puntos se convierten en <b>insignias</b>, y cada insignia es una puerta.</p>
 
-      <form id="forma-devoto" class="forma-1616 forma-clara">
-        <div class="campos">
-          <label>Vuestro nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
-          <label>Correo electrónico<input type="email" name="correo" required placeholder="para recibir las nuevas del viaje" /></label>
-          <label>Usuario de YouTube <small>(voluntario)</small><input type="text" name="youtube" placeholder="@vuestrousuario" /></label>
-          <label>Usuario de Instagram <small>(voluntario)</small><input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
+      <!-- Insignias -->
+      <div class="insignias-grid">
+        <div class="insignia-card">
+          <span class="insignia-icono">📜</span>
+          <b>Capítulos secretos</b>
+          <span>Escenas que Cervantes nunca escribió, solo para Devotos fieles.</span>
         </div>
-        <button class="btn btn-lacre" type="submit">🪶 Uníos. Sed devotos. Hacedla real.</button>
-        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje y para valorar vuestra devoción; lo único público será vuestro seudónimo. Si lo preferís, escribidnos directamente por <a href={waDevoto} target="_blank" rel="noopener">WhatsApp</a>.</p>
+        <div class="insignia-card">
+          <span class="insignia-icono">🗺️</span>
+          <b>Tratos en el camino</b>
+          <span>Ventajas especiales en los comercios Escuderos de las villas.</span>
+        </div>
+        <div class="insignia-card">
+          <span class="insignia-icono">🕯️</span>
+          <b>Conocer a Dulcinea</b>
+          <span>Acceso directo a momentos que nadie más ve.</span>
+        </div>
+      </div>
+
+      <!-- Separador ornamental -->
+      <div class="devoto-separador">✦ ✦ ✦</div>
+
+      <p class="devoto-llamada"><i>Dulcinea necesita devotos para ser real.<br/>Vos necesitáis creer para descubrir hasta dónde llega su historia.</i></p>
+
+      <form id="forma-devoto" class="forma-1616 forma-devoto-destacada">
+        <div class="devoto-correo-principal">
+          <label class="label-correo-grande">
+            Vuestro correo electrónico
+            <input type="email" name="correo" required placeholder="para recibir las nuevas del viaje" class="input-correo-grande" />
+          </label>
+          <button class="btn btn-lacre btn-devoto-cta" type="submit">🪶 Inscribirse como Devoto</button>
+        </div>
+        <details class="devoto-opcionales">
+          <summary>Añadir nombre de usuario <small>(voluntario, para las insignias)</small></summary>
+          <div class="campos campos-opcionales">
+            <label>Vuestro nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
+            <label>Usuario de YouTube<input type="text" name="youtube" placeholder="@vuestrousuario" /></label>
+            <label>Usuario de Instagram<input type="text" name="instagram" placeholder="@vuestrousuario" /></label>
+          </div>
+        </details>
+        <p class="forma-nota">La inscripción se abre en vuestro correo, lista para enviar. Vuestros datos solo se usarán para las nuevas del viaje; lo único público será vuestro seudónimo. Si lo preferís, escribidnos por <a href={waDevoto} target="_blank" rel="noopener">WhatsApp</a>.</p>
       </form>
     </article>
+
+    <style>
+      /* ── Insignias ── */
+      .insignias-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1.6rem 0 0.5rem;
+      }
+      @media (max-width: 640px) {
+        .insignias-grid { grid-template-columns: 1fr; }
+      }
+      .insignia-card {
+        background: var(--pergamino-claro);
+        border: 1px solid var(--oro);
+        padding: 1.1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+      }
+      .insignia-icono {
+        font-size: 1.7rem;
+        line-height: 1;
+        margin-bottom: 0.2rem;
+      }
+      .insignia-card b {
+        font-family: 'IM Fell English SC', serif;
+        font-weight: 400;
+        font-size: 0.95rem;
+        color: var(--lacre);
+        letter-spacing: 0.04em;
+      }
+      .insignia-card span {
+        font-size: 0.88rem;
+        color: var(--tinta-suave);
+        line-height: 1.4;
+      }
+
+      /* ── Separador y llamada ── */
+      .devoto-separador {
+        text-align: center;
+        color: var(--oro);
+        letter-spacing: 0.9rem;
+        font-size: 0.8rem;
+        margin: 1.8rem 0 1.2rem;
+        opacity: 0.7;
+      }
+      .devoto-llamada {
+        text-align: center;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--tinta-suave);
+        margin-bottom: 1.6rem;
+      }
+
+      /* ── Formulario destacado ── */
+      .forma-devoto-destacada {
+        background: var(--pergamino-claro);
+        border: 1.5px solid var(--oro);
+        outline: 1px solid rgba(150,116,31,0.25);
+        outline-offset: 4px;
+        padding: 1.8rem;
+      }
+      .devoto-correo-principal {
+        display: flex;
+        gap: 0.8rem;
+        align-items: flex-end;
+        flex-wrap: wrap;
+      }
+      .label-correo-grande {
+        flex: 1 1 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        font-family: 'IM Fell English SC', serif;
+        font-size: 0.9rem;
+        letter-spacing: 0.04em;
+        color: var(--tinta-suave);
+      }
+      .input-correo-grande {
+        font-size: 1rem;
+        padding: 0.65rem 0.8rem;
+        border: 1.5px solid var(--tinta-suave);
+        background: var(--pergamino);
+        color: var(--tinta);
+        font-family: 'EB Garamond', serif;
+        width: 100%;
+      }
+      .input-correo-grande:focus {
+        outline: 2px solid var(--lacre);
+        outline-offset: 2px;
+        border-color: var(--lacre);
+      }
+      .btn-devoto-cta {
+        flex-shrink: 0;
+        font-size: 1rem;
+        padding: 0.65rem 1.4rem;
+        white-space: nowrap;
+      }
+
+      /* ── Opcionales desplegables ── */
+      .devoto-opcionales {
+        margin-top: 1rem;
+      }
+      .devoto-opcionales summary {
+        font-family: 'IM Fell English SC', serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+        color: var(--tinta-suave);
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .devoto-opcionales summary::before {
+        content: '▸';
+        color: var(--oro);
+        transition: transform 0.2s;
+      }
+      .devoto-opcionales[open] summary::before {
+        transform: rotate(90deg);
+      }
+      .devoto-opcionales summary small {
+        font-family: 'EB Garamond', serif;
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+      .campos-opcionales {
+        margin-top: 0.8rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(150,116,31,0.3);
+      }
+    </style>
 
     <!-- ============ ESCUDEROS ============ -->
     <article class="via via-oscura revela" id="escudero" style="transition-delay:.15s">
