@@ -116,18 +116,24 @@ const waColaborar = waLink('Hola, represento a una entidad y me interesa colabor
             <div class="ft-campos">
               <label class="ft-label">Nombre<input type="text" name="nombre" placeholder="p. ej. Aldonza" /></label>
               <label class="ft-label">Correo electrónico<input type="email" name="correo" required placeholder="tu@correo.es" /></label>
+              <label class="ft-label">Ciudad o país<input type="text" name="ciudad" placeholder="p. ej. Alcalá de Henares" /></label>
               <label class="ft-label">Red social
                 <select name="red">
                   <option value="">Selecciona una</option>
                   <option value="Instagram">Instagram</option>
                   <option value="YouTube">YouTube</option>
                   <option value="Ambas">Ambas</option>
+                  <option value="Ninguna">Ninguna</option>
                 </select>
               </label>
               <label class="ft-label">Usuario<input type="text" name="usuario" placeholder="@tuusuario" /></label>
             </div>
-            <button class="ft-btn ft-btn-lacre" type="submit">Abrir solicitud en mi correo</button>
-            <p class="ft-nota">Se abrirá un borrador con tus datos. Revísalo y pulsa Enviar para completar la solicitud.</p>
+            <label class="ft-rgpd">
+              <input type="checkbox" name="rgpd" required />
+              <span>He leído y acepto el tratamiento de mis datos para gestionar mi participación en el Viaje de Dulcinea. No se cederán a terceros.</span>
+            </label>
+            <button class="ft-btn ft-btn-lacre" type="submit" id="btn-devoto">Enviar solicitud</button>
+            <p class="ft-nota" id="devoto-estado"></p>
             <a href={waDevoto} class="ft-wa" target="_blank" rel="noopener">También puedes consultar por WhatsApp.</a>
           </form>
         </div>
@@ -236,18 +242,66 @@ const waColaborar = waLink('Hola, represento a una entidad y me interesa colabor
   /* la solicitud compone un correo listo para enviar */
   const proyecto = JSON.parse(document.getElementById('datos-proyecto').textContent);
 
-  document.getElementById('forma-devoto').addEventListener('submit', (ev) => {
+  /* ── Supabase: registro de Devotos ── */
+  const SUPA_URL = 'https://mjdaeihmvlkhajmpxuet.supabase.co';
+  const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qZGFlaWhtdmxraGFqbXB4dWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzNDA5MzcsImV4cCI6MjExMDkxNjkzN30.YUE8ZsPvyB5MXUy2UQOLEpNlUKr5XZubJYVmNuxKIHw';
+
+  document.getElementById('forma-devoto').addEventListener('submit', async (ev) => {
     ev.preventDefault();
     const f = new FormData(ev.target);
-    const nombre = f.get('nombre') || f.get('correo');
-    const asunto = `Nuevo Devoto de Dulcinea — ${nombre}`;
-    const cuerpo = [
-      `Nombre: ${f.get('nombre') || '-'}`,
-      `Correo: ${f.get('correo')}`,
-      `Red social: ${f.get('red') || '-'}`,
-      `Usuario: ${f.get('usuario') || '-'}`,
-    ].join('\n');
-    location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    const btn = document.getElementById('btn-devoto');
+    const estado = document.getElementById('devoto-estado');
+
+    const datos = {
+      nombre:  f.get('nombre') || null,
+      correo:  f.get('correo'),
+      ciudad:  f.get('ciudad') || null,
+      red:     f.get('red') || null,
+      usuario: f.get('usuario') || null,
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    estado.textContent = '';
+
+    try {
+      const res = await fetch(`${SUPA_URL}/rest/v1/devotos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPA_KEY,
+          'Authorization': `Bearer ${SUPA_KEY}`,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(datos),
+      });
+
+      if (res.ok || res.status === 201) {
+        btn.textContent = '¡Solicitud enviada!';
+        estado.textContent = 'Gracias. Recibirás noticias pronto.';
+        estado.style.color = 'var(--oro)';
+        ev.target.reset();
+      } else {
+        throw new Error(`HTTP ${res.status}`);
+      }
+    } catch (err) {
+      /* respaldo: abre mailto si Supabase falla */
+      btn.disabled = false;
+      btn.textContent = 'Enviar solicitud';
+      estado.textContent = 'Hubo un problema. Enviando por correo…';
+      const nombre = datos.nombre || datos.correo;
+      const asunto = `Nuevo Devoto de Dulcinea — ${nombre}`;
+      const cuerpo = [
+        `Nombre: ${datos.nombre || '-'}`,
+        `Correo: ${datos.correo}`,
+        `Ciudad: ${datos.ciudad || '-'}`,
+        `Red social: ${datos.red || '-'}`,
+        `Usuario: ${datos.usuario || '-'}`,
+      ].join('\n');
+      setTimeout(() => {
+        location.href = `mailto:${proyecto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      }, 800);
+    }
   });
 
   document.getElementById('forma-escudero').addEventListener('submit', (ev) => {
@@ -544,12 +598,33 @@ const waColaborar = waLink('Hola, represento a una entidad y me interesa colabor
 .ft-btn-verde:hover { background: #2d4f28; }
 .ft-btn-azul  { background: #1e3a5a; }
 .ft-btn-azul:hover  { background: #152b44; }
+.ft-rgpd {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.ft-rgpd input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: .2rem;
+  accent-color: var(--lacre);
+  width: 1rem;
+  height: 1rem;
+}
+.ft-rgpd span {
+  font-size: .75rem;
+  color: var(--tinta-suave);
+  line-height: 1.5;
+  opacity: .85;
+}
 .ft-nota {
   font-size: .78rem;
   color: var(--tinta-suave);
   opacity: .8;
   line-height: 1.4;
   margin-bottom: .4rem;
+  min-height: 1.2em;
 }
 .ft-wa {
   display: inline-block;
