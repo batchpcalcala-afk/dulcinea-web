@@ -142,6 +142,21 @@ const waColaborar = waLink('Hola, represento a una entidad y me interesa colabor
     </div>
   </section>
 
+  <!-- ── ACCESO DEVOTOS ── -->
+  <section class="acc-devoto-banner revela">
+    <div class="contenedor acc-devoto-inner">
+      <div class="acc-devoto-texto">
+        <p class="acc-devoto-eyebrow sc">Donde Habita la Historia</p>
+        <h2 class="acc-devoto-h">¿Ya eres Devoto?</h2>
+        <p class="acc-devoto-p">Tu espacio reservado te espera. Dossiers de investigación, hallazgos históricos y los documentos que acompañan cada vídeo del Viaje.</p>
+      </div>
+      <a href="/devotos/acceso" class="acc-devoto-cta">
+        <span class="acc-devoto-cta-txt">Entrar en la Biblioteca</span>
+        <span class="acc-devoto-cta-flecha">→</span>
+      </a>
+    </div>
+  </section>
+
   <div class="part-sep"><span class="sc" style="letter-spacing:.3em;font-size:.75rem;color:var(--oro);opacity:.6">✦</span></div>
 
   <!-- ── II ESCUDEROS ── -->
@@ -636,6 +651,97 @@ const waColaborar = waLink('Hola, represento a una entidad y me interesa colabor
 }
 
 /* Separador entre secciones */
+/* ── Banner Acceso Devotos ── */
+.acc-devoto-banner {
+  background: linear-gradient(135deg, #1a1208 0%, #2a1e08 50%, #1a1208 100%);
+  border-top: 2px solid var(--oro);
+  border-bottom: 2px solid var(--oro);
+  padding: 2.8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.acc-devoto-banner::before {
+  content: '❧';
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8rem;
+  color: var(--oro);
+  opacity: .06;
+  pointer-events: none;
+  line-height: 1;
+}
+.acc-devoto-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.acc-devoto-texto { flex: 1; min-width: 220px; }
+.acc-devoto-eyebrow {
+  font-family: 'IM Fell English SC', serif;
+  font-size: .7rem;
+  letter-spacing: .22em;
+  color: var(--oro);
+  opacity: .8;
+  margin: 0 0 .4rem;
+  display: block;
+}
+.acc-devoto-h {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  color: var(--pergamino-claro);
+  margin: 0 0 .6rem;
+  line-height: 1.15;
+}
+.acc-devoto-p {
+  font-size: .95rem;
+  color: rgba(201,162,75,.75);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 480px;
+}
+.acc-devoto-cta {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: 1rem 2rem;
+  background: var(--oro);
+  border-radius: 3px;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 24px rgba(201,162,75,.3);
+}
+.acc-devoto-cta:hover {
+  background: #d4aa50;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,162,75,.45);
+}
+.acc-devoto-cta-txt {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 1rem;
+  letter-spacing: .08em;
+  color: var(--noche);
+  font-weight: 700;
+}
+.acc-devoto-cta-flecha {
+  font-size: 1.4rem;
+  color: var(--noche);
+  line-height: 1;
+  transition: transform .2s;
+}
+.acc-devoto-cta:hover .acc-devoto-cta-flecha { transform: translateX(4px); }
+
+@media (max-width: 600px) {
+  .acc-devoto-inner { flex-direction: column; align-items: flex-start; }
+  .acc-devoto-cta { width: 100%; justify-content: center; }
+  .acc-devoto-banner::before { display: none; }
+}
+
 .part-sep {
   text-align: center;
   padding: .5rem 0;
