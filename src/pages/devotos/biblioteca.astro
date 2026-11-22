@@ -1,0 +1,411 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Biblioteca — Donde Habita la Historia"
+  description="Documentos de investigación exclusivos para los Devotos de Dulcinea del Toboso.">
+
+  <!-- Pantalla de carga mientras verifica sesión -->
+  <div id="pantalla-carga" class="bib-carga">
+    <div class="bib-carga-inner">
+      <img src="/img/logo-dulcinea.png" alt="" class="bib-carga-logo" />
+      <p class="bib-carga-txt sc">Verificando acceso…</p>
+    </div>
+  </div>
+
+  <!-- Contenido (oculto hasta verificar) -->
+  <div id="contenido-bib" class="bib-oculto">
+
+    <nav class="bib-nav">
+      <a href="/" class="bib-nav-logo">
+        <img src="/img/logo-dulcinea.png" alt="El Viaje de Dulcinea" class="bib-nav-img" />
+        <span class="bib-nav-nombre sc">El Viaje de Dulcinea</span>
+      </a>
+      <div class="bib-nav-dcha">
+        <span class="bib-nav-usuario" id="bib-email"></span>
+        <button class="bib-btn-salir" id="btn-salir">Salir</button>
+      </div>
+    </nav>
+
+    <header class="bib-hero">
+      <p class="bib-eyebrow sc">Acceso exclusivo · Devotos</p>
+      <h1 class="bib-h1">Donde Habita la Historia</h1>
+      <p class="bib-sub">Aquí encontrarás los dossiers de investigación que acompañan cada vídeo del Viaje. Documentos para quienes quieren ir más allá de la imagen.</p>
+    </header>
+
+    <main class="bib-main contenedor">
+      <div id="bib-grid" class="bib-grid">
+        <!-- Los documentos se cargan aquí dinámicamente -->
+      </div>
+      <p id="bib-vacio" class="bib-vacio bib-oculto">Todavía no hay documentos publicados. Vuelve pronto.</p>
+      <p id="bib-error" class="bib-error bib-oculto"></p>
+    </main>
+
+    <footer class="bib-footer">
+      <p>¿Tienes alguna pregunta sobre los documentos? <a href="mailto:dulcinea@elviajededulcinea.es" class="bib-enlace">Escríbenos</a></p>
+    </footer>
+
+  </div>
+
+  <script is:inline>
+    const SUPA_URL = 'https://mjdaeihmvlkhajmpxuet.supabase.co';
+    const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qZGFlaWhtdmxraGFqbXB4dWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzNDA5MzcsImV4cCI6MjExMDkxNjkzN30.YUE8ZsPvyB5MXUy2UQOLEpNlUKr5XZubJYVmNuxKIHw';
+
+    function irAlLogin() { window.location.replace('/devotos/acceso'); }
+
+    async function refrescarToken(refresh_token) {
+      try {
+        const r = await fetch(`${SUPA_URL}/auth/v1/token?grant_type=refresh_token`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          body: JSON.stringify({ refresh_token }),
+        });
+        if (!r.ok) return null;
+        const d = await r.json();
+        return d.access_token ? d : null;
+      } catch(_) { return null; }
+    }
+
+    async function verificarSesion() {
+      let sess = null;
+      try { sess = JSON.parse(localStorage.getItem('supa-session') || 'null'); } catch(_) {}
+      if (!sess || !sess.access_token) { irAlLogin(); return; }
+
+      /* Verificar token con Supabase */
+      let token = sess.access_token;
+      const r = await fetch(`${SUPA_URL}/auth/v1/user`, {
+        headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${token}` }
+      });
+
+      if (r.status === 401 && sess.refresh_token) {
+        /* Token expirado — intentar renovar */
+        const nueva = await refrescarToken(sess.refresh_token);
+        if (!nueva) { try { localStorage.removeItem('supa-session'); } catch(_) {} irAlLogin(); return; }
+        token = nueva.access_token;
+        try { localStorage.setItem('supa-session', JSON.stringify({ ...sess, access_token: token, refresh_token: nueva.refresh_token || sess.refresh_token })); } catch(_) {}
+      } else if (!r.ok) {
+        try { localStorage.removeItem('supa-session'); } catch(_) {}
+        irAlLogin(); return;
+      }
+
+      /* Verificar que está aprobado */
+      const chk = await fetch(`${SUPA_URL}/rest/v1/devotos?correo=eq.${encodeURIComponent(sess.email)}&aprobado=eq.true&select=id`, {
+        headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${token}` }
+      });
+      const rows = await chk.json();
+      if (!Array.isArray(rows) || rows.length === 0) {
+        try { localStorage.removeItem('supa-session'); } catch(_) {}
+        irAlLogin(); return;
+      }
+
+      /* Sesión válida — mostrar contenido */
+      document.getElementById('pantalla-carga').style.display = 'none';
+      document.getElementById('contenido-bib').classList.remove('bib-oculto');
+      document.getElementById('bib-email').textContent = sess.email;
+
+      cargarDocumentos(token);
+    }
+
+    async function cargarDocumentos(token) {
+      const grid  = document.getElementById('bib-grid');
+      const vacio = document.getElementById('bib-vacio');
+      const errEl = document.getElementById('bib-error');
+
+      try {
+        const res = await fetch(`${SUPA_URL}/rest/v1/documentos?publicado=eq.true&order=orden.asc`, {
+          headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error('No se pudieron cargar los documentos.');
+        const docs = await res.json();
+
+        if (!docs || docs.length === 0) {
+          vacio.classList.remove('bib-oculto');
+          return;
+        }
+
+        grid.innerHTML = docs.map(doc => `
+          <article class="bib-card">
+            ${doc.portada_url
+              ? `<div class="bib-card-portada"><img src="${doc.portada_url}" alt="${doc.titulo}" loading="lazy" /></div>`
+              : `<div class="bib-card-portada bib-card-portada-vacia"><span class="bib-card-icono">❧</span></div>`
+            }
+            <div class="bib-card-cuerpo">
+              ${doc.video_titulo ? `<p class="bib-card-etiqueta sc">${doc.video_titulo}</p>` : ''}
+              <h2 class="bib-card-titulo">${doc.titulo}</h2>
+              ${doc.descripcion ? `<p class="bib-card-desc">${doc.descripcion}</p>` : ''}
+              <div class="bib-card-acciones">
+                ${doc.archivo_url
+                  ? `<a href="${doc.archivo_url}" class="bib-card-btn" target="_blank" rel="noopener">Leer dossier →</a>`
+                  : `<span class="bib-card-pronto">Próximamente</span>`
+                }
+                ${doc.video_url
+                  ? `<a href="${doc.video_url}" class="bib-card-btn-sec" target="_blank" rel="noopener">Ver vídeo</a>`
+                  : ''
+                }
+              </div>
+            </div>
+          </article>
+        `).join('');
+      } catch(e) {
+        errEl.textContent = e.message;
+        errEl.classList.remove('bib-oculto');
+      }
+    }
+
+    /* Cerrar sesión */
+    document.getElementById('btn-salir').addEventListener('click', () => {
+      try { localStorage.removeItem('supa-session'); } catch(_) {}
+      window.location.replace('/');
+    });
+
+    verificarSesion();
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--noche, #0e0c0a);
+      color: var(--pergamino-claro, #f5edda);
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    /* ── Pantalla de carga ── */
+    .bib-carga {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bib-carga-inner { text-align: center; }
+    .bib-carga-logo {
+      width: 48px;
+      opacity: .6;
+      animation: pulso 1.8s ease-in-out infinite;
+    }
+    @keyframes pulso { 0%,100%{opacity:.4} 50%{opacity:.9} }
+    .bib-carga-txt {
+      font-family: 'IM Fell English SC', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--oro, #C9A24B);
+      margin-top: .8rem;
+    }
+    .bib-oculto { display: none !important; }
+
+    /* ── Nav ── */
+    .bib-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(201,162,75,.12);
+    }
+    .bib-nav-logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+    .bib-nav-img  { width: 32px; height: 32px; object-fit: contain; }
+    .bib-nav-nombre {
+      font-family: 'IM Fell English SC', serif;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      color: var(--pergamino-claro, #f5edda);
+    }
+    .bib-nav-dcha { display: flex; align-items: center; gap: 1rem; }
+    .bib-nav-usuario {
+      font-size: .78rem;
+      color: var(--tinta-suave, #9e8e78);
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bib-btn-salir {
+      padding: .3rem .9rem;
+      background: none;
+      border: 1px solid rgba(201,162,75,.3);
+      border-radius: 3px;
+      color: var(--oro, #C9A24B);
+      font-family: 'IM Fell English SC', serif;
+      font-size: .75rem;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .bib-btn-salir:hover { background: rgba(201,162,75,.1); }
+
+    /* ── Hero ── */
+    .bib-hero {
+      text-align: center;
+      padding: 4rem 1.5rem 2.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .bib-eyebrow {
+      font-family: 'IM Fell English SC', serif;
+      font-size: .7rem;
+      letter-spacing: .22em;
+      color: var(--oro, #C9A24B);
+      margin: 0 0 .6rem;
+    }
+    .bib-h1 {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--pergamino-claro, #f5edda);
+      margin: 0 0 .8rem;
+      line-height: 1.2;
+    }
+    .bib-sub {
+      font-size: 1rem;
+      color: var(--tinta-suave, #9e8e78);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── Grid de documentos ── */
+    .contenedor { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+    .bib-main { padding-bottom: 5rem; }
+
+    .bib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .bib-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,162,75,.15);
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .25s, transform .25s;
+    }
+    .bib-card:hover {
+      border-color: rgba(201,162,75,.4);
+      transform: translateY(-3px);
+    }
+
+    .bib-card-portada {
+      height: 160px;
+      overflow: hidden;
+      background: rgba(201,162,75,.06);
+    }
+    .bib-card-portada img { width: 100%; height: 100%; object-fit: cover; }
+    .bib-card-portada-vacia {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bib-card-icono {
+      font-size: 2.5rem;
+      color: var(--oro, #C9A24B);
+      opacity: .3;
+    }
+
+    .bib-card-cuerpo {
+      padding: 1.25rem 1.4rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .bib-card-etiqueta {
+      font-family: 'IM Fell English SC', serif;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      color: var(--oro, #C9A24B);
+      margin: 0 0 .4rem;
+      opacity: .8;
+    }
+
+    .bib-card-titulo {
+      font-family: 'IM Fell English', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--pergamino-claro, #f5edda);
+      margin: 0 0 .6rem;
+      line-height: 1.3;
+    }
+
+    .bib-card-desc {
+      font-size: .88rem;
+      color: var(--tinta-suave, #9e8e78);
+      line-height: 1.55;
+      margin: 0 0 1.2rem;
+      flex: 1;
+    }
+
+    .bib-card-acciones {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .bib-card-btn {
+      padding: .45rem .9rem;
+      background: var(--lacre, #7E241B);
+      border-radius: 3px;
+      color: var(--pergamino-claro, #f5edda);
+      font-family: 'IM Fell English SC', serif;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .bib-card-btn:hover { background: #6a1c14; }
+
+    .bib-card-btn-sec {
+      padding: .45rem .9rem;
+      background: none;
+      border: 1px solid rgba(201,162,75,.3);
+      border-radius: 3px;
+      color: var(--oro, #C9A24B);
+      font-family: 'IM Fell English SC', serif;
+      font-size: .78rem;
+      letter-spacing: .06em;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .bib-card-btn-sec:hover { background: rgba(201,162,75,.1); }
+
+    .bib-card-pronto {
+      font-size: .78rem;
+      font-family: 'IM Fell English SC', serif;
+      color: var(--tinta-suave, #9e8e78);
+      opacity: .7;
+      letter-spacing: .06em;
+    }
+
+    .bib-vacio, .bib-error {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: .95rem;
+      color: var(--tinta-suave, #9e8e78);
+    }
+    .bib-error { color: #e08080; }
+
+    /* ── Footer ── */
+    .bib-footer {
+      border-top: 1px solid rgba(201,162,75,.1);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: .82rem;
+      color: var(--tinta-suave, #9e8e78);
+      opacity: .7;
+    }
+    .bib-enlace { color: var(--oro, #C9A24B); text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 600px) {
+      .bib-nav { padding: .8rem 1rem; }
+      .bib-nav-usuario { display: none; }
+      .bib-hero { padding: 2.5rem 1rem 2rem; }
+      .bib-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+</Base>

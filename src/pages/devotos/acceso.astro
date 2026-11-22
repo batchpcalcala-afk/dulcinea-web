@@ -1,0 +1,308 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Acceso Devotos — Donde Habita la Historia"
+  description="Espacio reservado para los Devotos de Dulcinea del Toboso. Accede con tu correo y contraseña.">
+
+  <div class="acc-wrap">
+
+    <header class="acc-cabecera">
+      <a href="/" class="acc-logo-link">
+        <img src="/img/logo-dulcinea.png" alt="El Viaje de Dulcinea" class="acc-logo" />
+      </a>
+      <p class="acc-eyebrow sc">Donde Habita la Historia</p>
+      <h1 class="acc-h1">Acceso de Devotos</h1>
+      <p class="acc-sub">Este espacio está reservado para quienes forman parte del Viaje.<br>Si todavía no eres Devoto, puedes <a href="/participar#devoto" class="acc-enlace">solicitar tu entrada</a>.</p>
+    </header>
+
+    <!-- Formulario de acceso -->
+    <div class="acc-tarjeta" id="bloque-login">
+      <form id="forma-acceso" autocomplete="on" novalidate>
+        <label class="acc-label">
+          Correo electrónico
+          <input type="email" name="correo" id="inp-correo" required autocomplete="email" placeholder="tu@correo.es" />
+        </label>
+        <label class="acc-label">
+          Contraseña
+          <input type="password" name="clave" id="inp-clave" required autocomplete="current-password" placeholder="••••••••" />
+        </label>
+        <p class="acc-error" id="acc-error"></p>
+        <button type="submit" class="acc-btn" id="acc-btn">Entrar</button>
+        <button type="button" class="acc-btn-sec" id="btn-olvide">He olvidado mi contraseña</button>
+      </form>
+    </div>
+
+    <!-- Reset de contraseña -->
+    <div class="acc-tarjeta acc-oculto" id="bloque-reset">
+      <p class="acc-reset-info">Escribe tu correo y te enviaremos un enlace para restablecer la contraseña.</p>
+      <form id="forma-reset" autocomplete="off" novalidate>
+        <label class="acc-label">
+          Correo electrónico
+          <input type="email" name="correo-reset" id="inp-reset" required placeholder="tu@correo.es" />
+        </label>
+        <p class="acc-error" id="reset-error"></p>
+        <button type="submit" class="acc-btn" id="reset-btn">Enviar enlace</button>
+        <button type="button" class="acc-btn-sec" id="btn-volver">Volver al acceso</button>
+      </form>
+      <p class="acc-ok acc-oculto" id="reset-ok">Enlace enviado. Revisa tu correo.</p>
+    </div>
+
+    <p class="acc-pie">¿Tienes dudas? Escríbenos a <a href="mailto:dulcinea@elviajededulcinea.es" class="acc-enlace">dulcinea@elviajededulcinea.es</a></p>
+
+  </div>
+
+  <script is:inline>
+    const SUPA_URL = 'https://mjdaeihmvlkhajmpxuet.supabase.co';
+    const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qZGFlaWhtdmxraGFqbXB4dWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUzNDA5MzcsImV4cCI6MjExMDkxNjkzN30.YUE8ZsPvyB5MXUy2UQOLEpNlUKr5XZubJYVmNuxKIHw';
+
+    /* Si ya hay sesión activa, redirigir directamente a la biblioteca */
+    (async () => {
+      try {
+        const sess = JSON.parse(localStorage.getItem('supa-session') || 'null');
+        if (sess && sess.access_token) {
+          const r = await fetch(`${SUPA_URL}/auth/v1/user`, {
+            headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${sess.access_token}` }
+          });
+          if (r.ok) { window.location.replace('/devotos/biblioteca'); return; }
+        }
+      } catch(_) {}
+    })();
+
+    /* Alternar entre login y reset */
+    document.getElementById('btn-olvide').addEventListener('click', () => {
+      document.getElementById('bloque-login').classList.add('acc-oculto');
+      document.getElementById('bloque-reset').classList.remove('acc-oculto');
+    });
+    document.getElementById('btn-volver').addEventListener('click', () => {
+      document.getElementById('bloque-reset').classList.add('acc-oculto');
+      document.getElementById('bloque-login').classList.remove('acc-oculto');
+    });
+
+    /* LOGIN */
+    document.getElementById('forma-acceso').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const correo = document.getElementById('inp-correo').value.trim();
+      const clave  = document.getElementById('inp-clave').value;
+      const btn    = document.getElementById('acc-btn');
+      const err    = document.getElementById('acc-error');
+
+      btn.disabled = true;
+      btn.textContent = 'Comprobando…';
+      err.textContent = '';
+
+      try {
+        const res = await fetch(`${SUPA_URL}/auth/v1/token?grant_type=password`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          body: JSON.stringify({ email: correo, password: clave }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error_description || data.message || 'Credenciales incorrectas.');
+        }
+
+        /* Guardar sesión en localStorage */
+        try { localStorage.setItem('supa-session', JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, email: correo })); } catch(_) {}
+
+        /* Verificar que el devoto está aprobado */
+        const chk = await fetch(`${SUPA_URL}/rest/v1/devotos?correo=eq.${encodeURIComponent(correo)}&aprobado=eq.true&select=id`, {
+          headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${data.access_token}` }
+        });
+        const rows = await chk.json();
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+          try { localStorage.removeItem('supa-session'); } catch(_) {}
+          throw new Error('Tu solicitud está pendiente de aprobación. Te avisaremos pronto.');
+        }
+
+        window.location.replace('/devotos/biblioteca');
+      } catch(e) {
+        err.textContent = e.message;
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    });
+
+    /* RESET DE CONTRASEÑA */
+    document.getElementById('forma-reset').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const correo = document.getElementById('inp-reset').value.trim();
+      const btn    = document.getElementById('reset-btn');
+      const err    = document.getElementById('reset-error');
+      const ok     = document.getElementById('reset-ok');
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      err.textContent = '';
+
+      try {
+        const res = await fetch(`${SUPA_URL}/auth/v1/recover`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+          body: JSON.stringify({ email: correo }),
+        });
+        if (!res.ok) throw new Error('No se pudo enviar el enlace.');
+        ok.classList.remove('acc-oculto');
+        btn.textContent = 'Enlace enviado';
+      } catch(e) {
+        err.textContent = e.message;
+        btn.disabled = false;
+        btn.textContent = 'Enviar enlace';
+      }
+    });
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--noche, #0e0c0a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .acc-wrap {
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* ── Cabecera ── */
+    .acc-cabecera {
+      text-align: center;
+    }
+    .acc-logo-link { display: inline-block; margin-bottom: .8rem; }
+    .acc-logo { width: 54px; height: 54px; object-fit: contain; opacity: .9; }
+    .acc-eyebrow {
+      font-family: 'IM Fell English SC', serif;
+      font-size: .72rem;
+      letter-spacing: .22em;
+      color: var(--oro, #C9A24B);
+      margin: 0 0 .4rem;
+    }
+    .acc-h1 {
+      font-family: 'IM Fell English', serif;
+      font-size: 1.9rem;
+      color: var(--pergamino-claro, #f5edda);
+      margin: 0 0 .6rem;
+      font-weight: 400;
+    }
+    .acc-sub {
+      font-size: .9rem;
+      color: var(--tinta-suave, #9e8e78);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .acc-enlace { color: var(--oro, #C9A24B); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ── Tarjeta formulario ── */
+    .acc-tarjeta {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,162,75,.18);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+    }
+    .acc-oculto { display: none !important; }
+
+    .acc-label {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      font-size: .82rem;
+      font-family: 'IM Fell English SC', serif;
+      letter-spacing: .05em;
+      color: var(--pergamino-claro, #f5edda);
+      margin-bottom: 1.1rem;
+    }
+    .acc-label input {
+      padding: .6rem .75rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,162,75,.25);
+      border-radius: 3px;
+      color: var(--pergamino-claro, #f5edda);
+      font-family: 'EB Garamond', serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .acc-label input:focus { border-color: var(--oro, #C9A24B); }
+    .acc-label input::placeholder { color: rgba(201,162,75,.35); }
+
+    .acc-error {
+      font-size: .8rem;
+      color: #e08080;
+      margin: -.4rem 0 .8rem;
+      min-height: 1.2em;
+      line-height: 1.4;
+    }
+
+    .acc-btn {
+      width: 100%;
+      padding: .75rem 1rem;
+      background: var(--lacre, #7E241B);
+      border: none;
+      border-radius: 3px;
+      color: var(--pergamino-claro, #f5edda);
+      font-family: 'IM Fell English SC', serif;
+      font-size: .9rem;
+      letter-spacing: .08em;
+      cursor: pointer;
+      transition: background .2s;
+      margin-bottom: .6rem;
+    }
+    .acc-btn:hover:not(:disabled) { background: #6a1c14; }
+    .acc-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+    .acc-btn-sec {
+      width: 100%;
+      padding: .4rem;
+      background: none;
+      border: none;
+      color: var(--tinta-suave, #9e8e78);
+      font-family: 'EB Garamond', serif;
+      font-size: .82rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .acc-btn-sec:hover { color: var(--oro, #C9A24B); }
+
+    .acc-reset-info {
+      font-size: .88rem;
+      color: var(--tinta-suave, #9e8e78);
+      margin: 0 0 1.2rem;
+      line-height: 1.5;
+    }
+    .acc-ok {
+      font-size: .85rem;
+      color: var(--oro, #C9A24B);
+      margin-top: .6rem;
+      text-align: center;
+    }
+
+    .acc-pie {
+      font-size: .78rem;
+      color: var(--tinta-suave, #9e8e78);
+      opacity: .7;
+      text-align: center;
+      margin: 0;
+    }
+
+    @media (max-width: 480px) {
+      .acc-wrap { padding: 1.5rem 1rem 2.5rem; }
+      .acc-tarjeta { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+
+</Base>
